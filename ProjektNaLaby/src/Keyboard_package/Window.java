@@ -1,25 +1,16 @@
 package Keyboard_package;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.GraphicsConfiguration;
-import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.plaf.SliderUI;
 
-public class Window extends JFrame {
+public class Window extends JFrame 
+{
+	private static final long serialVersionUID = 1L;
 	
 	JTextField field;
 	int fontSize;
@@ -105,10 +96,10 @@ public class Window extends JFrame {
 	}
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		Window frame = new Window("Window");
 		frame.setVisible(true);
-
 	}
 
 }
