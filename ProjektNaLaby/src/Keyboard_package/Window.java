@@ -6,8 +6,9 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+//FUNKCJA MAIN W TEJ KLASIE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public class Window extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +26,7 @@ public class Window extends JFrame
 		
 		written = "";
 		field = new JTextField("Text");
-		fontSize = 50;
+		fontSize = 40;
 		field.setFont(new Font(null, Font.PLAIN, fontSize));
 		add(field, BorderLayout.PAGE_START);
 		
@@ -41,13 +42,30 @@ public class Window extends JFrame
 		keysPanel.minus.addActionListener(new KeysListener());
 		keysPanel.times.addActionListener(new KeysListener());
 		keysPanel.divided.addActionListener(new KeysListener());
-		keysPanel.equals.addActionListener(new KeysListener());
+		keysPanel.coma.addActionListener(new KeysListener());
 		keysPanel.backspace.addActionListener(new BackspaceListener());
 		keysPanel.decimalPoint.addActionListener(new KeysListener());
 		keysPanel.left.addActionListener(new CursorListener());
 		keysPanel.right.addActionListener(new CursorListener());
 		keysPanel.ok.addActionListener(new OkListener());
-
+		
+		keysPanel.leftBracket.addActionListener(new KeysListener());
+		keysPanel.rightBracket.addActionListener(new KeysListener());
+		keysPanel.piValueButton.addActionListener(new KeysListener());
+		keysPanel.eValueButton.addActionListener(new KeysListener());
+		keysPanel.power.addActionListener(new KeysListener());
+		keysPanel.squareRoot.addActionListener(new KeysListener());
+		keysPanel.absoluteValue.addActionListener(new KeysListener());
+		keysPanel.sinus.addActionListener(new KeysListener());
+		keysPanel.cosinus.addActionListener(new KeysListener());
+		keysPanel.tangens.addActionListener(new KeysListener());
+		keysPanel.arcusSinus.addActionListener(new KeysListener());
+		keysPanel.arcusCosinus.addActionListener(new KeysListener());
+		keysPanel.arcusTangens.addActionListener(new KeysListener());
+		keysPanel.exp.addActionListener(new KeysListener());
+		keysPanel.naturalLogarythm.addActionListener(new KeysListener());
+		keysPanel.firtstVariableButoon.addActionListener(new KeysListener());
+		keysPanel.secondVariableButton.addActionListener(new KeysListener());
 	}
 	
 	class KeysListener implements ActionListener {
@@ -57,7 +75,6 @@ public class Window extends JFrame
 			written += e.getActionCommand();
 			field.setText(written);
 			field.grabFocus();
-			
 		}
 		
 	}
@@ -100,6 +117,7 @@ public class Window extends JFrame
 	{
 		Window frame = new Window("Window");
 		frame.setVisible(true);
+		JOptionPane.showMessageDialog(new JFrame(), "Uwaga backspace (<--) jeszcze nie dziala \n Nalezy pamietac o znaku mnozenia przed np. sin lub x\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }
