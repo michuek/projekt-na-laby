@@ -8,10 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import MathPackage.ArrowField;
 import Window_package.MainClass;
@@ -558,10 +560,18 @@ public class KeysPanel extends JPanel
 				if(RightPanel.lastJTextField == "F(y)") { RightPanel.yTrueForceInString = prawdziwyEfektKlikania; }
 				
 				VectorPanel.arrowField = new ArrowField(RightPanel.xTrueForceInString, RightPanel.yTrueForceInString);
+				
 				MainClass.frame.setVisible(false);
 				MainClass.frame.setVisible(true);
+				JComponent comp = (JComponent) e.getSource();
+				Window win = (Window) SwingUtilities.getWindowAncestor(comp);
+				win.dispose();
+				
 			}
 		}; ok.addActionListener(okButtonListener);
+		
+		
+		
 		//***********************************************************************************
 	}//KONIEC KONSTRUKTOA KLAWIATURY=================================================================
 	
