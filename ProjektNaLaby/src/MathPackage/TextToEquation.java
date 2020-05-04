@@ -45,14 +45,14 @@ public class TextToEquation
 		} 
 		catch (Exception e) 
 		{
-			JOptionPane.showMessageDialog(new JFrame(), "Computation error, I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(new JFrame(), "Computation error, I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
 			return 0;
 		}
 	}
 	
 	//FUNKCA LICZACA WARTOSC DOWOLNEj FUNKCJI R^2-->R ZAPISANEJ W STRINGU 
 	//[ARG1 (String) nazwa zmiennej zwierajacej wzor funkcji f] [ARG2 (String) nazwa pierwszego argumentu] [ARG3 (String) nazwa drugiego argumentu] [ARG4 (double) wartosc pierwszego argumentu] [ARG5 (double) wartosc drugiego argumentu]
-	//Zamiast x i y sa te dodatkowe pola zeby np zamiast f(x) bylo f(kasztan) aby z exp nie zrobiæ e4p.
+	//Zamiast x i y sa te dodatkowe pola zeby np zamiast f(x) bylo f(kasztan) aby z exp nie zrobiÃ¦ e4p.
 	public static double evaluateTwoVariableFunctionInString (String function, String nameOfFirtVariable, String nameOfSecondVariable, double valueOfFirstVariable, double valueOfSecondVariable) throws ScriptException
 	{
 		ScriptEngineManager mgr = new ScriptEngineManager();
@@ -71,7 +71,7 @@ public class TextToEquation
 		} 
 		catch (Exception e) 
 		{
-			JOptionPane.showMessageDialog(new JFrame(), "Computation error, \n I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(new JFrame(), "Computation error, \n I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
 			return 0;
 		}
 	}

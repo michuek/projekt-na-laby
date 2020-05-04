@@ -1,15 +1,12 @@
 package Window_package;
 
-import java.awt.BasicStroke;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class MainMenu extends JMenuBar {
-	
+
+	private static final long serialVersionUID = 1L;
 	JMenu menu;
 	JMenuItem menuItem1;
 	JMenuItem menuItem2;

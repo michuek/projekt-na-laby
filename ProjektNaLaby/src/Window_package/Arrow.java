@@ -4,6 +4,7 @@ import java.awt.Polygon;
 
 public class Arrow extends Polygon {
 	
+	private static final long serialVersionUID = 1L;
 	int positionX;
 	int positionY;
 	double x;
@@ -16,7 +17,8 @@ public class Arrow extends Polygon {
 	static int topHalfWidth = 10;
 	static int topLength = 16;
 
-	public Arrow(int posX, int posY, double argX, double argY) {
+	public Arrow(int posX, int posY, double argX, double argY) 
+	{
 		positionX = 0;
 		positionY = 0;
 		x = argX;
@@ -37,9 +39,10 @@ public class Arrow extends Polygon {
 		setMagnitude(x, y);
 	}
 	
-	void translateArrow(int posX, int posY) {
-		positionX += posX;
-		positionY += posY;
+	void translateArrow(int posX, int posY) 
+	{
+		positionX = VectorPanel.width/2 + posX;
+		positionY = VectorPanel.height/2 -posY;
 		for(int i = 0; i < 7; i++)
 		{
 			xpoints[i] += positionX;
@@ -52,23 +55,9 @@ public class Arrow extends Polygon {
 		magnitude = Math.sqrt( argX*argX + argY*argY);
 	}
 	
-	void setArgument() {// nadaje wektorowi zerowemu argument równy -pi/2
-		if( x == 0)
-		{
-			if(y > 0)
-				argument = Math.PI/2;
-			else
-				argument = -Math.PI/2;
-		}
-		else if(y == 0)
-		{
-			if(x > 0)
-				argument = 0;
-			else
-				argument = Math.PI;
-		}
-		else
-			argument = Math.atan( y / x );
+	void setArgument() 
+	{
+		argument=Math.atan2(y, x);
 	}
 	
 	void rotateArrow(double theta) {
