@@ -18,7 +18,7 @@ public class RightPanel extends JPanel {
 	StartStopButton startStopButton;
 	
 	public static String lastJTextField = new String();
-	public static String xTrueForceInString = "-1", yTrueForceInString = "0";
+	public static String xTrueForceInString = "firstVariable", yTrueForceInString = "secondVariable";
 	
 	JTextField fX;
 	JTextField fY;
@@ -28,6 +28,10 @@ public class RightPanel extends JPanel {
 	JTextField vY;
 	JTextField m;
 	JButton options;
+	
+	public static int keyboardUsageCounter = 0;
+	public static int badKeyboardUsageCounter = 0;
+	public static boolean isLastKeyboardUsageWasCorrect = false;
 
 	public RightPanel() 
 	{

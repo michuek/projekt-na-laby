@@ -71,12 +71,12 @@ public class TextToEquation
 		} 
 		catch (Exception e) 
 		{
-			//JOptionPane.showMessageDialog(new JFrame(), "Computation error, \n I'm gonna return 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
-			return 0;
+			//JOptionPane.showMessageDialog(new JFrame(), "Computation error, \n I'm gonna return almost 0", "Info message", JOptionPane.INFORMATION_MESSAGE);
+			return Math.pow(10, -10);
 		}
 	}
 	//main do testowania metod klasy (wspolpracuje z klawiatura ekranowa)
-	public static void main(String[] args) throws ScriptException 
+	/*public static void main(String[] args) throws ScriptException 
 	{
 		//PRZYKLADY UZYCIA
 		String equation  = new String("96+Math.sqrt(6)");
@@ -87,5 +87,5 @@ public class TextToEquation
 		
 		String twoVariableFormula = "Math.sqrt(Math.log(x)+2*y)";
 		System.out.println(twoVariableFormula + "=" + evaluateTwoVariableFunctionInString(twoVariableFormula, "x",	 "y", 1, 5));
-	}
+	}*/
 }

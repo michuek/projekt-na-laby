@@ -64,8 +64,12 @@ public class KeysPanel extends JPanel
 	
 	//KONSTRUKTOR KLAWIATURY===================================================================
 	public KeysPanel(Window frame, JTextField f) 
-	{
-		JOptionPane.showMessageDialog(new JFrame(), "Uwaga\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
+	{		//info jak uzywac klawiatury za pierwszym razem i po zlym poprzednim uzyciu
+		if (RightPanel.isLastKeyboardUsageWasCorrect == false ||  RightPanel.keyboardUsageCounter==0)
+		{
+			JOptionPane.showMessageDialog(new JFrame(), "Uwaga\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
 		field = f;
 		
 		setLayout(new GridLayout(gridRows, gridColumns, gridHgap, gridVgap));
@@ -561,12 +565,12 @@ public class KeysPanel extends JPanel
 				
 				VectorPanel.arrowField = new ArrowField(RightPanel.xTrueForceInString, RightPanel.yTrueForceInString);
 				
-				MainClass.frame.setVisible(false);
-				MainClass.frame.setVisible(true);
+				MainClass.frame.repaint();								//odswieza
 				JComponent comp = (JComponent) e.getSource();
 				Window win = (Window) SwingUtilities.getWindowAncestor(comp);
-				win.dispose();
+				win.dispose();											//zamyka klawiature
 				
+				RightPanel.keyboardUsageCounter++;
 			}
 		}; ok.addActionListener(okButtonListener);
 		
