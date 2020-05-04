@@ -62,6 +62,7 @@ public class KeysPanel extends JPanel
 	
 	JTextField field;
 	
+	
 	//KONSTRUKTOR KLAWIATURY===================================================================
 	public KeysPanel(Window frame, JTextField f) 
 	{		//info jak uzywac klawiatury za pierwszym razem i po zlym poprzednim uzyciu

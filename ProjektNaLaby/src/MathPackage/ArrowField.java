@@ -77,15 +77,13 @@ public class ArrowField
 		if (badXArrowsAmount!=0 || badYArrowsAmount!=0)
 		{
 			if (badXArrowsAmount!=0)
-			{	//Podanie F(y) jako pierwsze czysci Stringa F(x), a if zapobiega wyswietleniu komunikatu 
-				if (RightPanel.keyboardUsageCounter !=0)
-				{
-					JOptionPane.showMessageDialog(new JFrame(), "Incorrect F(x) equation.\n Example:\n 2sin(xy) -----> incorrect.\n 2*sin(x*y) -----> correct.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-					RightPanel.badKeyboardUsageCounter++;
-					RightPanel.isLastKeyboardUsageWasCorrect = false;
-				}
-				
+			{	
+				JOptionPane.showMessageDialog(new JFrame(), "Incorrect F(x) equation.\n Example:\n 2sin(xy) -----> incorrect.\n 2*sin(x*y) -----> correct.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+				RightPanel.badKeyboardUsageCounter++;
+				RightPanel.isLastKeyboardUsageWasCorrect = false;
 			}
+				
+			
 			if (badYArrowsAmount!=0)
 			{
 				JOptionPane.showMessageDialog(new JFrame(), "Incorrect F(y) equation.\n Example:\n 2sin(xy) -----> incorrect.\n 2*sin(x*y) -----> correct.", "INFO", JOptionPane.INFORMATION_MESSAGE);

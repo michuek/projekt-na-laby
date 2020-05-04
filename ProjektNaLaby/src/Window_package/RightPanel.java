@@ -36,7 +36,6 @@ public class RightPanel extends JPanel {
 
 	public RightPanel() 
 	{
-		xTrueForceInString = new String();
 		setLayout(new GridLayout(18, 1, 5, 5));
 		add(new JLabel(" "));
 		

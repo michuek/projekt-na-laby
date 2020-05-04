@@ -17,7 +17,7 @@ public class Window extends JFrame
 	
 	JTextField field;
 	int fontSize;
-	String written;
+	public static String written; //equation displayed in keyboard window (friendly form)
 	List<String> printedHistory = new LinkedList<String>();
 	
 	KeysPanel keysPanel;
