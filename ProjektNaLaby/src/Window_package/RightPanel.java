@@ -18,7 +18,8 @@ public class RightPanel extends JPanel {
 	StartStopButton startStopButton;
 	
 	public static String lastJTextField = new String();
-	public static String xTrueForceInString = "firstVariable", yTrueForceInString = "secondVariable";
+	public static String xTrueForceInString = "firstVariable";
+	public static String yTrueForceInString = "secondVariable";
 	
 	JTextField fX;
 	JTextField fY;

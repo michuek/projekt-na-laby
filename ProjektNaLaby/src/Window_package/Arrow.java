@@ -1,5 +1,6 @@
 package Window_package;
 
+import java.awt.Color;
 import java.awt.Polygon;
 
 public class Arrow extends Polygon {
@@ -11,6 +12,7 @@ public class Arrow extends Polygon {
 	double y;
 	double magnitude;
 	double argument;
+	Color color ;
 	
 	static int lineHalfWidth = 5;
 	static int lineLength =20;
@@ -24,6 +26,7 @@ public class Arrow extends Polygon {
 		x = argX;
 		y = argY;
 		setArgument();
+		color = Color.YELLOW;
 		
 		addPoint(0, -lineHalfWidth);
 		addPoint(lineLength, -lineHalfWidth);
@@ -60,6 +63,16 @@ public class Arrow extends Polygon {
 		argument=Math.atan2(y, x);
 	}
 	
+	public void setColor (Color c)
+	{
+		color = c;
+	}
+	
+	public Color getColor ()
+	{
+		return (color);
+	}
+	
 	void rotateArrow(double theta) {
 		int xTemp = 0;
 		int yTemp = 0;
@@ -79,6 +92,11 @@ public class Arrow extends Polygon {
 			ypoints[i] += positionY;
 		}		
 		
+	}
+	
+	public double getMagnitude()
+	{
+		return (magnitude);
 	}
 
 }

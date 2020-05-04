@@ -1,5 +1,7 @@
 package MathPackage;
 
+import java.awt.Color;
+
 import javax.script.ScriptException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,6 +21,7 @@ public class ArrowField
 	String fyString;
 	int badXArrowsAmount;
 	int badYArrowsAmount;
+	double largestForceValue;
 	
 	public ArrowField(String fxString, String fyString) 
 	{
@@ -28,6 +31,8 @@ public class ArrowField
 		this.fyString = fyString;
 		this.arrowArray = new Arrow [arrowsInRow][arrowsInColumn];
 		this.createForceField(fxString, fyString);
+		this.findLargestForceValue();
+		this.setProperColorsToArrows();
 		VerifyEquation();
 	}
 	
@@ -72,12 +77,15 @@ public class ArrowField
 		if (badXArrowsAmount!=0 || badYArrowsAmount!=0)
 		{
 			if (badXArrowsAmount!=0)
-			{
-				JOptionPane.showMessageDialog(new JFrame(), "Incorrect F(x) equation.\n Example:\n 2sin(xy) -----> incorrect.\n 2*sin(x*y) -----> correct.", "INFO", JOptionPane.INFORMATION_MESSAGE);
-				RightPanel.badKeyboardUsageCounter++;
-				RightPanel.isLastKeyboardUsageWasCorrect = false;
+			{	//Podanie F(y) jako pierwsze czysci Stringa F(x), a if zapobiega wyswietleniu komunikatu 
+				if (RightPanel.keyboardUsageCounter !=0)
+				{
+					JOptionPane.showMessageDialog(new JFrame(), "Incorrect F(x) equation.\n Example:\n 2sin(xy) -----> incorrect.\n 2*sin(x*y) -----> correct.", "INFO", JOptionPane.INFORMATION_MESSAGE);
+					RightPanel.badKeyboardUsageCounter++;
+					RightPanel.isLastKeyboardUsageWasCorrect = false;
+				}
+				
 			}
-			else
 			if (badYArrowsAmount!=0)
 			{
 				JOptionPane.showMessageDialog(new JFrame(), "Incorrect F(y) equation.\n Example:\n 2sin(xy) -----> incorrect.\n 2*sin(x*y) -----> correct.", "INFO", JOptionPane.INFORMATION_MESSAGE);
@@ -91,6 +99,44 @@ public class ArrowField
 		}
 	}
 
+	void findLargestForceValue ()
+	{
+		double largest=0;
+		for (int i=0; i<arrowsInRow; i++)
+		{
+			for (int j=0; j<arrowsInColumn; j++)
+			{
+				if(arrowArray[i][j].getMagnitude() > largest)
+				{
+					largest = arrowArray[i][j].getMagnitude();
+				}
+			}
+		}
+		largestForceValue = largest;
+	}
+	
+	public double getLargestForceValue()
+	{
+		return largestForceValue;
+	}
+	
+	void setProperColorsToArrows()
+	{
+		Color LOW = Color.RED;
+		Color HIGH = Color.BLUE;
+		for (int i=0; i<arrowsInRow; i++)
+		{
+			for (int j=0; j<arrowsInColumn; j++)
+			{			//ratio is from range [0 , 1]
+				double ratio = arrowArray[i][j].getMagnitude() / largestForceValue;
+				int red = (int)Math.abs((ratio * LOW.getRed()) + ((1 - ratio) * HIGH.getRed()));
+				int green = (int)Math.abs((ratio * LOW.getGreen()) + ((1 - ratio) * HIGH.getGreen()));
+				int blue = (int)Math.abs((ratio * LOW.getBlue()) + ((1 - ratio) * HIGH.getBlue()));
+				arrowArray[i][j].setColor(new Color(red, green, blue));
+			}
+		}
+	}
+	
 	public Arrow getArrow (int i, int j)
 	{
 		return (arrowArray[i][j]);
