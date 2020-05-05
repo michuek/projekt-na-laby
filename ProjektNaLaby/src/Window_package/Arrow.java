@@ -19,7 +19,7 @@ public class Arrow extends Polygon {
 	static int topHalfWidth = 10;
 	static int topLength = 16;
 
-	public Arrow(int posX, int posY, double argX, double argY) 
+	public Arrow(int posX, int posY, double argX, double argY, VectorPanel vPanel) 
 	{
 		positionX = 0;
 		positionY = 0;
@@ -37,15 +37,15 @@ public class Arrow extends Polygon {
 		addPoint(0, lineHalfWidth);
 		
 		
-		translateArrow(posX, posY);
+		translateArrow(posX, posY, vPanel);
 		rotateArrow(argument);
 		setMagnitude(x, y);
 	}
 	
-	void translateArrow(int posX, int posY) 
+	void translateArrow(int posX, int posY, VectorPanel vPanel) 
 	{
-		positionX = VectorPanel.width/2 + posX;
-		positionY = VectorPanel.height/2 -posY;
+		positionX = vPanel.getWidth()/2 + posX;
+		positionY = vPanel.getHeight()/2 -posY;
 		for(int i = 0; i < 7; i++)
 		{
 			xpoints[i] += positionX;

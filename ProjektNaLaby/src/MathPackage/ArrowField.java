@@ -12,38 +12,40 @@ import Window_package.VectorPanel;
 
 public class ArrowField
 {
-	static final int arrowsInRow = 10;
-	static final int arrowsInColumn = 15;
+	final int arrowsInRow = 10;
+	final int arrowsInColumn = 15;
 	Arrow [][] arrowArray;
-	static final int xSpaceBetweenArrows = VectorPanel.width/(arrowsInRow);
-	static final int ySpaceBetweenArrows = VectorPanel.height/(arrowsInColumn);
+	int xSpaceBetweenArrows;
+	int ySpaceBetweenArrows;
 	String fxString;
 	String fyString;
 	int badXArrowsAmount;
 	int badYArrowsAmount;
 	double largestForceValue;
 	
-	public ArrowField(String fxString, String fyString) 
+	public ArrowField(String fxString, String fyString, VectorPanel vPanel) 
 	{
 		this.badXArrowsAmount = 0;
 		this.badYArrowsAmount = 0;
 		this.fxString = fxString;
 		this.fyString = fyString;
+		xSpaceBetweenArrows = vPanel.getWidth()/(arrowsInRow);
+		ySpaceBetweenArrows = vPanel.getHeight()/(arrowsInColumn);
 		this.arrowArray = new Arrow [arrowsInRow][arrowsInColumn];
-		this.createForceField(fxString, fyString);
+		this.createForceField(fxString, fyString, vPanel);
 		this.findLargestForceValue();
 		this.setProperColorsToArrows();
 		VerifyEquation();
 	}
 	
-	public void createForceField (String fxString, String fyString)
+	public void createForceField (String fxString, String fyString, VectorPanel vPanel)
 	{
 		for (int i=0; i<arrowsInRow; i++)
 		{
 			for (int j=0; j<arrowsInColumn; j++)
 			{
-				int xPos = (int) (-VectorPanel.width/2 + i*xSpaceBetweenArrows); // x nalezy (-width/2 ; width/2)
-				int yPos = (int) (-VectorPanel.height/2 + j*ySpaceBetweenArrows); // y nalezy (-height/2 ; height/2)
+				int xPos = (int) (-vPanel.getWidth()/2 + i*xSpaceBetweenArrows); // x nalezy (-width/2 ; width/2)
+				int yPos = (int) (-vPanel.getHeight()/2 + j*ySpaceBetweenArrows); // y nalezy (-height/2 ; height/2)
 				double xVal = 1;
 				double yVal = 1;
 				// F(x,y) w normalnym uk³adzie wspó³rzêdnych tj. (0,0) w œrodku
@@ -67,7 +69,7 @@ public class ArrowField
 				}	 
 				catch (ScriptException e) {  } //do nothing
 				
-				arrowArray[i][j] = new Arrow(xPos, yPos, xVal, yVal);
+				arrowArray[i][j] = new Arrow(xPos, yPos, xVal, yVal, vPanel);
 			}
 		}
 	}
@@ -140,6 +142,10 @@ public class ArrowField
 		return (arrowArray[i][j]);
 	}
 
+	public int getArrowsInRow() { return arrowsInRow; }
+
+	public  int getArrowsInColumn() { return arrowsInColumn; }
+		
 	
 
 }

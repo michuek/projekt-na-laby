@@ -28,7 +28,7 @@ public class MainWindow extends JFrame {
 		vectorPanel = new VectorPanel();
 		add(vectorPanel, BorderLayout.CENTER);
 
-		rightPanel = new RightPanel();
+		rightPanel = new RightPanel(vectorPanel);
 		add(rightPanel, BorderLayout.LINE_END);
 	}
 }

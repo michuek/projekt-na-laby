@@ -35,7 +35,7 @@ public class RightPanel extends JPanel {
 	public static int badKeyboardUsageCounter = 0;
 	public static boolean isLastKeyboardUsageWasCorrect = false;
 
-	public RightPanel() 
+	public RightPanel(VectorPanel vPanel) 
 	{
 		setLayout(new GridLayout(18, 1, 5, 5));
 		add(new JLabel(" "));
@@ -58,7 +58,7 @@ public class RightPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				Window keysFrame = new Window("Podaj Fx", fX);
+				Window keysFrame = new Window("Podaj Fx", fX, vPanel);
 				keysFrame.setVisible(true);	
 				lastJTextField = "F(x)";
 			}
@@ -83,7 +83,7 @@ public class RightPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				Window keysFrame = new Window("Podaj Fy", fY);
+				Window keysFrame = new Window("Podaj Fy", fY, vPanel);
 				keysFrame.setVisible(true);	
 				lastJTextField = "F(y)";
 			}
@@ -128,7 +128,7 @@ public class RightPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				VectorPanel.startThread(); //statek zaczyna dzialac
+				vPanel.startThread(); //statek zaczyna dzialac
 				
 			}
 		};	startStopButton.addActionListener(aStart);

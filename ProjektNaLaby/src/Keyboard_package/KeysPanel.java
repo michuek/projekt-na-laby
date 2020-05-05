@@ -65,7 +65,7 @@ public class KeysPanel extends JPanel
 	
 	
 	//KONSTRUKTOR KLAWIATURY===================================================================
-	public KeysPanel(Window frame, JTextField f) 
+	public KeysPanel(Window frame, JTextField f, VectorPanel vPanel) 
 	{		//info jak uzywac klawiatury za pierwszym razem i po zlym poprzednim uzyciu
 		if (RightPanel.isLastKeyboardUsageWasCorrect == false ||  RightPanel.keyboardUsageCounter==0)
 		{
@@ -565,7 +565,7 @@ public class KeysPanel extends JPanel
 				if(RightPanel.lastJTextField == "F(x)") { SimulationSettings.setxTrueForceInString(prawdziwyEfektKlikania); }
 				if(RightPanel.lastJTextField == "F(y)") { SimulationSettings.setyTrueForceInString(prawdziwyEfektKlikania); }
 				
-				VectorPanel.arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString());
+				vPanel.arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), vPanel);
 				
 				MainClass.frame.repaint();								//odswieza
 				JComponent comp = (JComponent) e.getSource();

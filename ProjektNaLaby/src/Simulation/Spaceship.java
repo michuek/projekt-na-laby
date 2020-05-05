@@ -16,29 +16,24 @@ public class Spaceship implements Runnable
 	
 	private double xCurrentSpeed;
 	private double yCurrentSpeed;
-	private double xPreviousSpeed;
-	private double yPreviousSpeed;
-	
 	private double xCurrentPos;
 	private double yCurrentPos;
-	private double xPreviousPos;
-	private double yPreviousPos;
-	
 	private double mass;
 	private double time;
 	private double dt;
 	
 	private Color color = Color.YELLOW;
+	private int diameter = 50;
 	
 	public Spaceship() 
 	{
-		xPreviousPos = SimulationSettings.getX0Pos();
-		yPreviousPos = SimulationSettings.getY0Pos();
+		SimulationSettings.getX0Pos();
+		SimulationSettings.getY0Pos();
 		xCurrentPos = SimulationSettings.getX0Pos();
 		yCurrentPos = SimulationSettings.getY0Pos();
 		
-		xPreviousSpeed = SimulationSettings.getV0X();
-		yPreviousSpeed = SimulationSettings.getV0Y();
+		SimulationSettings.getV0X();
+		SimulationSettings.getV0Y();
 		xCurrentSpeed = SimulationSettings.getV0X();
 		yCurrentSpeed = SimulationSettings.getV0Y();
 		
@@ -64,28 +59,14 @@ public class Spaceship implements Runnable
 	
 	void updateVelocity ()
 	{
-		double x = xCurrentSpeed;
-		double y = yCurrentSpeed;
-		
 		xCurrentSpeed += xAcceleration * dt;
 		yCurrentSpeed += yAcceleration * dt;
-		
-		xPreviousSpeed = x;
-		yPreviousSpeed = y;
-		System.out.println(xCurrentSpeed + " , " + yCurrentSpeed);
 	}
 	
 	void updatePosition()
 	{
-		double x = xCurrentPos;
-		double y = yCurrentPos;
-		
 		xCurrentPos += xCurrentSpeed * dt;
 		yCurrentPos += yCurrentSpeed * dt;
-		
-		
-		xPreviousPos = x;
-		yPreviousPos = y;
 	}
 	
 	public void performSimulatingStep ()
@@ -100,11 +81,11 @@ public class Spaceship implements Runnable
 	//END OF HOW TO PERFORM SIMULATION ************************
 	
 	//HOW TO DRAW THE SPACESHIP*********************************
-	public void paint(Graphics g)
+	public void paint(Graphics g, VectorPanel vPanel)
 	{
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setColor(getColor());
-		g2D.fillOval((int) (VectorPanel.width/2 + xCurrentPos), (int) (VectorPanel.height/2 - yCurrentPos), 50, 50);
+		g2D.fillOval((int) (vPanel.getWidth()/2 + xCurrentPos - diameter/2), (int) (vPanel.getHeight()/2 - yCurrentPos - diameter/2), 50, 50);
     }//END HOW TO DRAW THE SPACESHIP*****************************
 	
 	
