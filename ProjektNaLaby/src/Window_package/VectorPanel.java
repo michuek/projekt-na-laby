@@ -71,9 +71,12 @@ public class VectorPanel extends JPanel
 		{
 			for(int j = 0; j < arrowsInColumn; j++)
 			{
-				g2d.setColor(arrowField.getArrow(i, j).getColor());
-				g.drawPolygon(arrowField.getArrow(i, j));
-				g.fillPolygon(arrowField.getArrow(i, j));
+				if (arrowField.getArrow(i, j).getMagnitude()>1)
+				{
+					g2d.setColor(arrowField.getArrow(i, j).getColor());
+					g.drawPolygon(arrowField.getArrow(i, j));
+					g.fillPolygon(arrowField.getArrow(i, j));
+				}
 			}
 		}
 		spaceship1.paint(g2d);

@@ -2,8 +2,8 @@ package Simulation;
 
 public class SimulationSettings 
 {
-	static double x0Pos=40;
-	static double y0Pos=250;
+	static double x0Pos=150;
+	static double y0Pos=69;
 	
 	static double v0X = 0;
 	static double v0Y = 0;

@@ -515,8 +515,8 @@ public class KeysPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "3.14159265359";
-				clickHistory.add("3.14159265359");
+				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.PI";
+				clickHistory.add("Math.PI");
 			}
 		}; piValueButton.addActionListener(piValueButtonListener);
 		//***********************************************************************************
@@ -525,8 +525,8 @@ public class KeysPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "2.71828182846";
-				clickHistory.add("2.71828182846");
+				prawdziwyEfektKlikania =prawdziwyEfektKlikania + "Math.E";
+				clickHistory.add("Math.E");
 			}
 		}; eValueButton.addActionListener(eValueButtonListener);
 		//***********************************************************************************
@@ -560,7 +560,7 @@ public class KeysPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				field.setText(field.getName() + "=" + prawdziwyEfektKlikania);
+				field.setText(field.getName() + "=" + Window.written);
 				
 				if(RightPanel.lastJTextField == "F(x)") { SimulationSettings.setxTrueForceInString(prawdziwyEfektKlikania); }
 				if(RightPanel.lastJTextField == "F(y)") { SimulationSettings.setyTrueForceInString(prawdziwyEfektKlikania); }

@@ -29,6 +29,7 @@ public class Spaceship implements Runnable
 	private double dt;
 	
 	private Color color = Color.YELLOW;
+	private int sizeOfSpaceship = 20; 
 	
 	public Spaceship() 
 	{
@@ -72,7 +73,6 @@ public class Spaceship implements Runnable
 		
 		xPreviousSpeed = x;
 		yPreviousSpeed = y;
-		System.out.println(xCurrentSpeed + " , " + yCurrentSpeed);
 	}
 	
 	void updatePosition()
@@ -104,7 +104,7 @@ public class Spaceship implements Runnable
 	{
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setColor(getColor());
-		g2D.fillOval((int) (VectorPanel.width/2 + xCurrentPos), (int) (VectorPanel.height/2 - yCurrentPos), 50, 50);
+		g2D.fillOval((int) (VectorPanel.width/2 + xCurrentPos - sizeOfSpaceship/2), (int) (VectorPanel.height/2 - yCurrentPos - sizeOfSpaceship/2), sizeOfSpaceship, sizeOfSpaceship);
     }//END HOW TO DRAW THE SPACESHIP*****************************
 	
 	
