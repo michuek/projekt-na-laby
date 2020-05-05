@@ -4,6 +4,8 @@ public class SimulationSettings
 {
 	static double x0Pos=40;
 	static double y0Pos=250;
+	//static double x0Pos=0;
+	//static double y0Pos=0;
 	
 	static double v0X = 0;
 	static double v0Y = 0;

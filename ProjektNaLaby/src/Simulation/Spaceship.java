@@ -67,8 +67,10 @@ public class Spaceship implements Runnable
 		double x = xCurrentSpeed;
 		double y = yCurrentSpeed;
 		
-		xCurrentSpeed = xPreviousSpeed +  (xAcceleration * dt);
-		yCurrentSpeed = yPreviousSpeed +  (yAcceleration * dt);
+		//xCurrentSpeed = xPreviousSpeed +  (xAcceleration * dt);
+		//yCurrentSpeed = yPreviousSpeed +  (yAcceleration * dt);
+		xCurrentSpeed += xAcceleration * dt;
+		yCurrentSpeed += yAcceleration * dt;
 		
 		xPreviousSpeed = x;
 		yPreviousSpeed = y;
@@ -80,8 +82,10 @@ public class Spaceship implements Runnable
 		double x = xCurrentPos;
 		double y = yCurrentPos;
 		
-		xCurrentPos = xPreviousPos + (xCurrentSpeed * dt);
-		yCurrentPos = yPreviousPos + (yCurrentSpeed * dt);
+		//xCurrentPos = xPreviousPos + (xCurrentSpeed * dt);
+		//yCurrentPos = yPreviousPos + (yCurrentSpeed * dt);
+		xCurrentPos += xCurrentSpeed * dt;
+		yCurrentPos += yCurrentSpeed * dt;
 		
 		
 		xPreviousPos = x;
@@ -114,7 +118,7 @@ public class Spaceship implements Runnable
 		while (true)
 		{
 			this.performSimulatingStep();		
-			try { Thread.sleep(0); } 		// graphical speed of movement 	[0-fast 	10-slow]
+			try { Thread.sleep(1); } 		// graphical speed of movement 	[0-fast 	10-slow]
 			catch (InterruptedException e) {  }
 		}
 	}
