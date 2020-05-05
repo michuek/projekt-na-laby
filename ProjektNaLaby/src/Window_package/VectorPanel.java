@@ -5,9 +5,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.swing.JPanel;
 
 import MathPackage.ArrowField;
+import Simulation.SimulationSettings;
+import Simulation.Spaceship;
 
 public class VectorPanel extends JPanel 
 {
@@ -24,6 +29,8 @@ public class VectorPanel extends JPanel
 	static final int arrowsInColumn = 15;
 	public static ArrowField arrowField;
 	
+	private static Spaceship spaceship1;
+	
 	public VectorPanel() 
 	{
 		setBackground(Color.BLACK);
@@ -35,11 +42,20 @@ public class VectorPanel extends JPanel
 		yAxis.addPoint(width/2, 0);
 		yAxis.addPoint(width/2, height);
 		
-		//arrowField = new ArrowField("0", "0");
-		arrowField = new ArrowField(RightPanel.xTrueForceInString, RightPanel.yTrueForceInString);
+		arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString());
+		
+		spaceship1 = new Spaceship();
 	}
 	
-	public void paintComponent(Graphics g) 
+	
+	public static void startThread () //Powoduje wywolanie metody run statku spaceship1
+	{
+		ExecutorService exec = Executors.newFixedThreadPool(1);
+		exec.execute(spaceship1);
+		exec.shutdown();
+	}
+	
+	public void paintComponent(Graphics g) 	//Rysowanie pola i statku
 	{
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -60,12 +76,9 @@ public class VectorPanel extends JPanel
 				g.fillPolygon(arrowField.getArrow(i, j));
 			}
 		}
-		
-		//g.drawPolygon(demoArrow);
-		//g.fillPolygon(demoArrow);
-		
+		spaceship1.paint(g2d);
+		repaint();
 	}
 	
 
-	
 }

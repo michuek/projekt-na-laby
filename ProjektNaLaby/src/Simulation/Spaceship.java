@@ -1,28 +1,34 @@
 package Simulation;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.script.ScriptException;
 
 import MathPackage.TextToEquation;
-import Window_package.RightPanel;
+import Window_package.VectorPanel;
 
-public class Spaceship 
+public class Spaceship implements Runnable
 {
-	double xAcceleration;
-	double yAcceleration;
+	private double xAcceleration;
+	private double yAcceleration;
 	
-	double xCurrentSpeed;
-	double yCurrentSpeed;
-	double xPreviousSpeed;
-	double yPreviousSpeed;
+	private double xCurrentSpeed;
+	private double yCurrentSpeed;
+	private double xPreviousSpeed;
+	private double yPreviousSpeed;
 	
-	double xCurrentPos;
-	double yCurrentPos;
-	double xPreviousPos;
-	double yPreviousPos;
+	private double xCurrentPos;
+	private double yCurrentPos;
+	private double xPreviousPos;
+	private double yPreviousPos;
 	
-	double mass;
-	double time;
-	double dt;
+	private double mass;
+	private double time;
+	private double dt;
+	
+	private Color color = Color.YELLOW;
 	
 	public Spaceship() 
 	{
@@ -36,15 +42,13 @@ public class Spaceship
 		xCurrentSpeed = SimulationSettings.getV0X();
 		yCurrentSpeed = SimulationSettings.getV0Y();
 		
-		xAcceleration =0;
-		yAcceleration =0;
-		
 		mass = SimulationSettings.getMass();
 		
 		time = SimulationSettings.getTime();
 		dt = SimulationSettings.getDt();
 	}
 	
+	//HOW TO PERFORM SIMULATION *******************************
 	void updateAcceleration (String fxString, String fyString)
 	{
 		try 
@@ -68,6 +72,7 @@ public class Spaceship
 		
 		xPreviousSpeed = x;
 		yPreviousSpeed = y;
+		System.out.println(xCurrentSpeed + " , " + yCurrentSpeed);
 	}
 	
 	void updatePosition()
@@ -78,16 +83,43 @@ public class Spaceship
 		xCurrentPos = xPreviousPos + (xCurrentSpeed * dt);
 		yCurrentPos = yPreviousPos + (yCurrentSpeed * dt);
 		
+		
 		xPreviousPos = x;
 		yPreviousPos = y;
 	}
 	
 	public void performSimulatingStep ()
 	{
-		updateAcceleration(RightPanel.xTrueForceInString, RightPanel.yTrueForceInString);
+		
+		updateAcceleration(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString());
 		updateVelocity();
 		updatePosition();
+		
 		time = time + dt;
 	}
+	//END OF HOW TO PERFORM SIMULATION ************************
+	
+	//HOW TO DRAW THE SPACESHIP*********************************
+	public void paint(Graphics g)
+	{
+		Graphics2D g2D = (Graphics2D) g;
+		g2D.setColor(getColor());
+		g2D.fillOval((int) (VectorPanel.width/2 + xCurrentPos), (int) (VectorPanel.height/2 - yCurrentPos), 50, 50);
+    }//END HOW TO DRAW THE SPACESHIP*****************************
+	
+	
+	@Override			
+	public void run() 			// PERFORMING SIMULATION
+	{
+		while (true)
+		{
+			this.performSimulatingStep();		
+			try { Thread.sleep(0); } 		// graphical speed of movement 	[0-fast 	10-slow]
+			catch (InterruptedException e) {  }
+		}
+	}
+	
+	public Color getColor() { return color; }
+	public void setColor(Color color) { this.color = color; }
 
 }

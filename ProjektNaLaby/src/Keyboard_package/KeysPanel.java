@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import MathPackage.ArrowField;
+import Simulation.SimulationSettings;
 import Window_package.MainClass;
 import Window_package.RightPanel;
 import Window_package.VectorPanel;
@@ -561,10 +562,10 @@ public class KeysPanel extends JPanel
 			{
 				field.setText(field.getName() + "=" + prawdziwyEfektKlikania);
 				
-				if(RightPanel.lastJTextField == "F(x)") { RightPanel.xTrueForceInString = prawdziwyEfektKlikania; }
-				if(RightPanel.lastJTextField == "F(y)") { RightPanel.yTrueForceInString = prawdziwyEfektKlikania; }
+				if(RightPanel.lastJTextField == "F(x)") { SimulationSettings.setxTrueForceInString(prawdziwyEfektKlikania); }
+				if(RightPanel.lastJTextField == "F(y)") { SimulationSettings.setyTrueForceInString(prawdziwyEfektKlikania); }
 				
-				VectorPanel.arrowField = new ArrowField(RightPanel.xTrueForceInString, RightPanel.yTrueForceInString);
+				VectorPanel.arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString());
 				
 				MainClass.frame.repaint();								//odswieza
 				JComponent comp = (JComponent) e.getSource();

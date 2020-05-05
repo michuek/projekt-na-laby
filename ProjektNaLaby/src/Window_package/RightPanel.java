@@ -1,6 +1,8 @@
 package Window_package;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -18,8 +20,7 @@ public class RightPanel extends JPanel {
 	StartStopButton startStopButton;
 	
 	public static String lastJTextField = new String();
-	public static String xTrueForceInString = "firstVariable";
-	public static String yTrueForceInString = "secondVariable";
+	
 	
 	JTextField fX;
 	JTextField fY;
@@ -121,6 +122,16 @@ public class RightPanel extends JPanel {
 		add(startStopButton);
 		
 		add(new JLabel(" "));
+		
+		ActionListener aStart = new ActionListener() // Rozpoczyna symulacjê ruchu statku
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				VectorPanel.startThread(); //statek zaczyna dzialac
+				
+			}
+		};	startStopButton.addActionListener(aStart);
 	}
 
 }

@@ -24,10 +24,10 @@ public class MainWindow extends JFrame {
 		setJMenuBar(menuBar);
 		
 		setLayout(new BorderLayout());
-
+		
 		vectorPanel = new VectorPanel();
 		add(vectorPanel, BorderLayout.CENTER);
-		
+
 		rightPanel = new RightPanel();
 		add(rightPanel, BorderLayout.LINE_END);
 	}

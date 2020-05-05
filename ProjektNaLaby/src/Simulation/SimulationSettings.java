@@ -2,19 +2,21 @@ package Simulation;
 
 public class SimulationSettings 
 {
-	static double x0Pos;
-	static double y0Pos;
+	static double x0Pos=40;
+	static double y0Pos=250;
 	
-	static double v0X;
-	static double v0Y;
+	static double v0X = 0;
+	static double v0Y = 0;
 
-	static double mass;
+	static double mass = 1;
 	
-	static double time;
-	static double dt;
+	static double time = 0;
+	static double dt = 0.01;
 	
 	static double speedOfSimulation;
 	
+	static String xTrueForceInString = "-1*firstVariable";			//domyslne Fx
+	static String yTrueForceInString = "-1*secondVariable";			//domyslne Fy
 
 	public SimulationSettings() 
 	{
@@ -56,6 +58,12 @@ public class SimulationSettings
 	
 	public static double getSpeedOfSimulation() { return speedOfSimulation; }
 	public static void setSpeedOfSimulation(double speedOfSimulation) { SimulationSettings.speedOfSimulation = speedOfSimulation; }
+
+	public static String getxTrueForceInString() { return xTrueForceInString; }
+	public static void setxTrueForceInString(String xTrueForceInString) { SimulationSettings.xTrueForceInString = xTrueForceInString; }
+		
+	public static String getyTrueForceInString() { return yTrueForceInString; }
+	public static void setyTrueForceInString(String yTrueForceInString) { SimulationSettings.yTrueForceInString = yTrueForceInString; }
 	//END OF GETTERS AND SETERS*****************************
 
 }

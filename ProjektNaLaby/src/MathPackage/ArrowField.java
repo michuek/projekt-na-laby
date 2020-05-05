@@ -44,8 +44,8 @@ public class ArrowField
 			{
 				int xPos = (int) (-VectorPanel.width/2 + i*xSpaceBetweenArrows); // x nalezy (-width/2 ; width/2)
 				int yPos = (int) (-VectorPanel.height/2 + j*ySpaceBetweenArrows); // y nalezy (-height/2 ; height/2)
-				double xVal =1;
-				double yVal = 0;
+				double xVal = 1;
+				double yVal = 1;
 				// F(x,y) w normalnym uk³adzie wspó³rzêdnych tj. (0,0) w œrodku
 				try 
 				{
