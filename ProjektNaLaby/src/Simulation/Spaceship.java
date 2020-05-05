@@ -67,8 +67,6 @@ public class Spaceship implements Runnable
 		double x = xCurrentSpeed;
 		double y = yCurrentSpeed;
 		
-		//xCurrentSpeed = xPreviousSpeed +  (xAcceleration * dt);
-		//yCurrentSpeed = yPreviousSpeed +  (yAcceleration * dt);
 		xCurrentSpeed += xAcceleration * dt;
 		yCurrentSpeed += yAcceleration * dt;
 		
@@ -82,8 +80,6 @@ public class Spaceship implements Runnable
 		double x = xCurrentPos;
 		double y = yCurrentPos;
 		
-		//xCurrentPos = xPreviousPos + (xCurrentSpeed * dt);
-		//yCurrentPos = yPreviousPos + (yCurrentSpeed * dt);
 		xCurrentPos += xCurrentSpeed * dt;
 		yCurrentPos += yCurrentSpeed * dt;
 		
