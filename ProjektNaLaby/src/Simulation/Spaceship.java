@@ -1,4 +1,4 @@
-package MovingObject;
+package Simulation;
 
 import javax.script.ScriptException;
 
@@ -12,38 +12,37 @@ public class Spaceship
 	
 	double xCurrentSpeed;
 	double yCurrentSpeed;
-	double xLastSpeed;
-	double yLastSpeed;
+	double xPreviousSpeed;
+	double yPreviousSpeed;
 	
 	double xCurrentPos;
 	double yCurrentPos;
-	double xLastPos;
-	double yLastPos;
+	double xPreviousPos;
+	double yPreviousPos;
 	
 	double mass;
-	
 	double time;
 	double dt;
 	
 	public Spaceship() 
 	{
-		xLastPos = 0;
-		yLastPos = 0;
-		xCurrentPos =0;
-		yCurrentPos =0;
+		xPreviousPos = SimulationSettings.getX0Pos();
+		yPreviousPos = SimulationSettings.getY0Pos();
+		xCurrentPos = SimulationSettings.getX0Pos();
+		yCurrentPos = SimulationSettings.getY0Pos();
 		
-		xLastSpeed = 0;
-		yLastSpeed = 0;
-		xCurrentSpeed =0;
-		yCurrentSpeed =0;
+		xPreviousSpeed = SimulationSettings.getV0X();
+		yPreviousSpeed = SimulationSettings.getV0Y();
+		xCurrentSpeed = SimulationSettings.getV0X();
+		yCurrentSpeed = SimulationSettings.getV0Y();
 		
 		xAcceleration =0;
 		yAcceleration =0;
 		
-		mass=1;
+		mass = SimulationSettings.getMass();
 		
-		time =0;
-		dt = 0.01;
+		time = SimulationSettings.getTime();
+		dt = SimulationSettings.getDt();
 	}
 	
 	void updateAcceleration (String fxString, String fyString)
@@ -64,11 +63,11 @@ public class Spaceship
 		double x = xCurrentSpeed;
 		double y = yCurrentSpeed;
 		
-		xCurrentSpeed = xLastSpeed +  (xAcceleration * dt);
-		yCurrentSpeed = yLastSpeed +  (yAcceleration * dt);
+		xCurrentSpeed = xPreviousSpeed +  (xAcceleration * dt);
+		yCurrentSpeed = yPreviousSpeed +  (yAcceleration * dt);
 		
-		xLastSpeed = x;
-		yLastSpeed = y;
+		xPreviousSpeed = x;
+		yPreviousSpeed = y;
 	}
 	
 	void updatePosition()
@@ -76,11 +75,11 @@ public class Spaceship
 		double x = xCurrentPos;
 		double y = yCurrentPos;
 		
-		xCurrentPos = xLastPos + (xCurrentSpeed * dt);
-		yCurrentPos = yLastPos + (yCurrentSpeed * dt);
+		xCurrentPos = xPreviousPos + (xCurrentSpeed * dt);
+		yCurrentPos = yPreviousPos + (yCurrentSpeed * dt);
 		
-		xLastPos = x;
-		yLastPos = y;
+		xPreviousPos = x;
+		yPreviousPos = y;
 	}
 	
 	public void performSimulatingStep ()
