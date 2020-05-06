@@ -93,20 +93,121 @@ public class RightPanel extends JPanel {
 		add(new JLabel(" "));
 		
 		rX = new JTextField("Podaj rx");
+		rX.setName("rx");
+		rX.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Window keysFrame = new Window("Podaj r_x", rX, vPanel);
+				keysFrame.getKeysPanel().removeFrist();
+				keysFrame.getKeysPanel().removeSecond();
+				keysFrame.setVisible(true);	
+				lastJTextField = "r_x";
+			}
+		});
+		
 		add(rX);
 		rY = new JTextField("Podaj ry");
+		rY.setName("ry");
+		rY.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Window keysFrame = new Window("Podaj r_y", rY, vPanel);
+				keysFrame.getKeysPanel().removeFrist();
+				keysFrame.getKeysPanel().removeSecond();
+				keysFrame.setVisible(true);	
+				lastJTextField = "r_y";
+			}
+		});
 		add(rY);
 		
 		add(new JLabel(" "));
 		
 		vX = new JTextField("Podaj vx");
+		vX.setName("vx");
+		vX.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Window keysFrame = new Window("Podaj v_x", vX, vPanel);
+				keysFrame.getKeysPanel().removeFrist();
+				keysFrame.getKeysPanel().removeSecond();
+				keysFrame.setVisible(true);	
+				lastJTextField = "v_x";
+			}
+		});
 		add(vX);
 		vY = new JTextField("Podaj vy");
+		vY.setName("vy");
+		vY.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Window keysFrame = new Window("Podaj v_y", vY, vPanel);
+				keysFrame.getKeysPanel().removeFrist();
+				keysFrame.getKeysPanel().removeSecond();
+				keysFrame.setVisible(true);	
+				lastJTextField = "v_y";
+			}
+		});
 		add(vY);
 		
 		add(new JLabel(" "));
 		
 		m = new JTextField("Podaj m");
+		m.setName("m");
+		m.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				Window keysFrame = new Window("Podaj m", m, vPanel);
+				keysFrame.getKeysPanel().removeFrist();
+				keysFrame.getKeysPanel().removeSecond();
+				keysFrame.setVisible(true);	
+				lastJTextField = "m";
+			}
+		});
 		add(m);
 		
 		add(new JLabel(" "));
@@ -123,7 +224,7 @@ public class RightPanel extends JPanel {
 		
 		add(new JLabel(" "));
 		
-		ActionListener aStart = new ActionListener() // Rozpoczyna symulacjê ruchu statku
+		/*ActionListener aStart = new ActionListener() // Rozpoczyna symulacjê ruchu statku
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
@@ -131,7 +232,7 @@ public class RightPanel extends JPanel {
 				vPanel.startThread(); //statek zaczyna dzialac
 				
 			}
-		};	startStopButton.addActionListener(aStart);
+		};	startStopButton.addActionListener(aStart);*/
 	}
 
 }

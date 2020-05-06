@@ -562,8 +562,16 @@ public class KeysPanel extends JPanel
 			{
 				field.setText(field.getName() + "=" + Window.written);
 				
-				if(RightPanel.lastJTextField == "F(x)") { SimulationSettings.setxTrueForceInString(prawdziwyEfektKlikania); }
-				if(RightPanel.lastJTextField == "F(y)") { SimulationSettings.setyTrueForceInString(prawdziwyEfektKlikania); }
+				switch(RightPanel.lastJTextField) 
+				{
+				case "F(x)": SimulationSettings.setxTrueForceInString(prawdziwyEfektKlikania);break;
+				case "F(y)": SimulationSettings.setyTrueForceInString(prawdziwyEfektKlikania);break;
+				case "r_x": SimulationSettings.setX0Pos(Double.parseDouble(prawdziwyEfektKlikania));break;
+				case "r_y": SimulationSettings.setY0Pos(Double.parseDouble(prawdziwyEfektKlikania));break;
+				case "v_x": SimulationSettings.setV0X(Double.parseDouble(prawdziwyEfektKlikania));break;
+				case "v_y": SimulationSettings.setV0Y(Double.parseDouble(prawdziwyEfektKlikania));break;
+				case "m": SimulationSettings.setMass(Double.parseDouble(prawdziwyEfektKlikania));break;
+				}
 				
 				vPanel.arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), vPanel);
 				
@@ -582,6 +590,9 @@ public class KeysPanel extends JPanel
 	}//KONIEC KONSTRUKTOA KLAWIATURY=================================================================
 	
 	public String getPrawdziwyEfektKlikania () { return (prawdziwyEfektKlikania); }
+	
+	public void removeFrist() { remove(firtstVariableButoon); }
+	public void removeSecond() { remove(secondVariableButton); }
 	
 }
 

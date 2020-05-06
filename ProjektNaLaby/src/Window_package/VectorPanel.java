@@ -24,7 +24,7 @@ public class VectorPanel extends JPanel
 
 	public ArrowField arrowField;
 	
-	private Spaceship spaceship1;
+	private static Spaceship spaceship1;
 	
 	public VectorPanel() 
 	{
@@ -64,9 +64,10 @@ public class VectorPanel extends JPanel
 	
 	
 	
-	public void startThread () //Powoduje wywolanie metody run statku spaceship1
+	public static void startThread () //Powoduje wywolanie metody run statku spaceship1
 	{
 		ExecutorService exec = Executors.newFixedThreadPool(1);
+		spaceship1 = new Spaceship();
 		exec.execute(spaceship1);
 		exec.shutdown();
 	}

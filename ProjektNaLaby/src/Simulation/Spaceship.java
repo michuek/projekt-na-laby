@@ -14,6 +14,10 @@ public class Spaceship implements Runnable
 	private double xAcceleration;
 	private double yAcceleration;
 	
+	public static double arrowKeyAccX = 0.0;
+	public static double arrowKeyAccY = 0.0;
+	public static double thrust = 100.0;
+	
 	private double xCurrentSpeed;
 	private double yCurrentSpeed;
 	private double xCurrentPos;
@@ -59,8 +63,8 @@ public class Spaceship implements Runnable
 	
 	void updateVelocity ()
 	{
-		xCurrentSpeed += xAcceleration * dt;
-		yCurrentSpeed += yAcceleration * dt;
+		xCurrentSpeed += (xAcceleration + arrowKeyAccX) * dt;
+		yCurrentSpeed += (yAcceleration + arrowKeyAccY) * dt;
 	}
 	
 	void updatePosition()
@@ -102,5 +106,9 @@ public class Spaceship implements Runnable
 	
 	public Color getColor() { return color; }
 	public void setColor(Color color) { this.color = color; }
+	
+	public static void setArrowKeyAccX(double ax){arrowKeyAccX = ax;}
+	public static void setArrowKeyAccY(double ay){arrowKeyAccY = ay;}
+
 
 }
