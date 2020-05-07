@@ -14,7 +14,8 @@ public class StartStopButton extends JButton {
 
 	private static final long serialVersionUID = 1L;
 
-	public StartStopButton() {
+	public StartStopButton() 
+	{
 		super("START/STOP");
 		
 
@@ -22,17 +23,18 @@ public class StartStopButton extends JButton {
 		addKeyListener(new KeyListener() {
 			
 			@Override
-			public void keyTyped(KeyEvent e) {				
-			}
+			public void keyTyped(KeyEvent e) {	}	
 			
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(KeyEvent e) 
+			{
 				Spaceship.setArrowKeyAccX(0.0);
 				Spaceship.setArrowKeyAccY(0.0);								
 			}
 			
 			@Override
-			public void keyPressed(KeyEvent e) {
+			public void keyPressed(KeyEvent e) 
+			{
 				switch(e.getKeyCode())
 				{
 				case KeyEvent.VK_LEFT: 
@@ -56,9 +58,9 @@ public class StartStopButton extends JButton {
 		addActionListener(new ActionListener() {// Rozpoczyna symulacjê ruchu statku
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				VectorPanel.startSpaceshipThread(); //statek zaczyna dzialac
-				
 			}
 		});
 

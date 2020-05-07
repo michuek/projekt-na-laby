@@ -1,6 +1,8 @@
 package Window_package;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -10,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Keyboard_package.Window;
+import OpcjeButtonWindow.OpcjeWindow;
 
 public class RightPanel extends JPanel {
 	
@@ -212,6 +215,15 @@ public class RightPanel extends JPanel {
 		add(new JLabel(" "));
 		
 		options = new JButton("Opcje");
+		options.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				OpcjeWindow opcje = new OpcjeWindow();
+				opcje.setVisible(true);
+			}
+		});
 		add(options);
 		
 		add(new JLabel(" "));

@@ -13,7 +13,7 @@ public class SimulationSettings
 	static double time = 0;
 	static double dt = 0.01;
 	
-	static double speedOfSimulation;
+	static int speedOfSimulation = 10;
 	
 	static String xTrueForceInString = "-1*firstVariable";			//domyslne Fx
 	static String yTrueForceInString = "-1*secondVariable";			//domyslne Fy
@@ -56,8 +56,8 @@ public class SimulationSettings
 	public static double getDt() { return dt; }	
 	public static void setDt(double dt) { SimulationSettings.dt = dt; }
 	
-	public static double getSpeedOfSimulation() { return speedOfSimulation; }
-	public static void setSpeedOfSimulation(double speedOfSimulation) { SimulationSettings.speedOfSimulation = speedOfSimulation; }
+	public static int getSpeedOfSimulation() { return speedOfSimulation; }
+	public static void setSpeedOfSimulation(int speedOfSimulation) { SimulationSettings.speedOfSimulation = speedOfSimulation; }
 
 	public static String getxTrueForceInString() { return xTrueForceInString; }
 	public static void setxTrueForceInString(String xTrueForceInString) { SimulationSettings.xTrueForceInString = xTrueForceInString; }

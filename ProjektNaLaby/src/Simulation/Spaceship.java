@@ -30,7 +30,6 @@ public class Spaceship implements Runnable
 	private Color colorOfSpaceship = Color.YELLOW;
 	private int diameter = 50;
 	
-	//private Path path = new Path(Color.GREEN, new BasicStroke(4));
 	private Path path;
 	public Spaceship() 
 	{
@@ -52,8 +51,6 @@ public class Spaceship implements Runnable
 		path = new Path(2, this);
 	}
 	
-	
-
 
 	//HOW TO PERFORM SIMULATION *******************************
 	void updateAcceleration (String fxString, String fyString)
@@ -85,7 +82,6 @@ public class Spaceship implements Runnable
 	
 	public void performSimulatingStep ()
 	{
-		
 		updateAcceleration(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString());
 		updateVelocity();
 		updatePosition();
@@ -111,7 +107,7 @@ public class Spaceship implements Runnable
 		while (true)
 		{
 			this.performSimulatingStep();		
-			try { Thread.sleep(3); } 		// graphical speed of movement 	[0-fast 	10-slow]
+			try { Thread.sleep(SimulationSettings.getSpeedOfSimulation()); } 		// graphical speed of movement 	[0-fast 	10-slow]
 			catch (InterruptedException e) {  }
 		}
 	}
