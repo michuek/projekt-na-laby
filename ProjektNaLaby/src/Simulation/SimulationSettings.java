@@ -2,11 +2,11 @@ package Simulation;
 
 public class SimulationSettings 
 {
-	static double x0Pos=0;
+	static double x0Pos=100;
 	static double y0Pos=200;
 	
-	static double v0X = 100;
-	static double v0Y = 0;
+	static double v0X = 70;
+	static double v0Y = -200;
 
 	static double mass = 1;
 	
@@ -18,7 +18,7 @@ public class SimulationSettings
 	static String xTrueForceInString = "-1*firstVariable";			//domyslne Fx
 	static String yTrueForceInString = "-1*secondVariable";			//domyslne Fy
 
-	public SimulationSettings() 
+	public SimulationSettings() 	//NIEUZYWANY JESZCE
 	{
 		x0Pos=0;
 		y0Pos=0;

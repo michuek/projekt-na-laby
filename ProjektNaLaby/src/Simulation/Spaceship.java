@@ -3,6 +3,7 @@ package Simulation;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 import javax.script.ScriptException;
 
@@ -26,9 +27,11 @@ public class Spaceship implements Runnable
 	private double time;
 	private double dt;
 	
-	private Color color = Color.YELLOW;
+	private Color colorOfSpaceship = Color.YELLOW;
 	private int diameter = 50;
 	
+	//private Path path = new Path(Color.GREEN, new BasicStroke(4));
+	private Path path;
 	public Spaceship() 
 	{
 		SimulationSettings.getX0Pos();
@@ -45,8 +48,13 @@ public class Spaceship implements Runnable
 		
 		time = SimulationSettings.getTime();
 		dt = SimulationSettings.getDt();
+		
+		path = new Path(2, this);
 	}
 	
+	
+
+
 	//HOW TO PERFORM SIMULATION *******************************
 	void updateAcceleration (String fxString, String fyString)
 	{
@@ -63,12 +71,14 @@ public class Spaceship implements Runnable
 	
 	void updateVelocity ()
 	{
+		path.addSpeedToPath(Math.sqrt(xCurrentSpeed*xCurrentSpeed + yCurrentSpeed*yCurrentSpeed));
 		xCurrentSpeed += (xAcceleration + arrowKeyAccX) * dt;
 		yCurrentSpeed += (yAcceleration + arrowKeyAccY) * dt;
 	}
 	
 	void updatePosition()
 	{
+		path.addPositionToPath(new Point((int) xCurrentPos, (int)yCurrentPos));
 		xCurrentPos += xCurrentSpeed * dt;
 		yCurrentPos += yCurrentSpeed * dt;
 	}
@@ -90,6 +100,8 @@ public class Spaceship implements Runnable
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setColor(getColor());
 		g2D.fillOval((int) (vPanel.getWidth()/2 + xCurrentPos - diameter/2), (int) (vPanel.getHeight()/2 - yCurrentPos - diameter/2), 50, 50);
+		path.paint(g2D, vPanel);
+		
     }//END HOW TO DRAW THE SPACESHIP*****************************
 	
 	
@@ -99,16 +111,22 @@ public class Spaceship implements Runnable
 		while (true)
 		{
 			this.performSimulatingStep();		
-			try { Thread.sleep(1); } 		// graphical speed of movement 	[0-fast 	10-slow]
+			try { Thread.sleep(3); } 		// graphical speed of movement 	[0-fast 	10-slow]
 			catch (InterruptedException e) {  }
 		}
 	}
 	
-	public Color getColor() { return color; }
-	public void setColor(Color color) { this.color = color; }
+	public Color getColor() { return colorOfSpaceship; }
+	public void setColor(Color color) { this.colorOfSpaceship = color; }
 	
 	public static void setArrowKeyAccX(double ax){arrowKeyAccX = ax;}
 	public static void setArrowKeyAccY(double ay){arrowKeyAccY = ay;}
+	
+	public double getxCurrentSpeed() { return xCurrentSpeed; }
+	public double getyCurrentSpeed() { return yCurrentSpeed; }
+	
+	public Path getPath() { return path; }
+		
 
 
 }

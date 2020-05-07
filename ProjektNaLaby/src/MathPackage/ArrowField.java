@@ -10,7 +10,7 @@ import Window_package.Arrow;
 import Window_package.RightPanel;
 import Window_package.VectorPanel;
 
-public class ArrowField
+public class ArrowField 
 {
 	final int arrowsInRow = 10;
 	final int arrowsInColumn = 15;
@@ -22,6 +22,7 @@ public class ArrowField
 	int badXArrowsAmount;
 	int badYArrowsAmount;
 	double largestForceValue;
+	
 	
 	public ArrowField(String fxString, String fyString, VectorPanel vPanel) 
 	{
@@ -145,7 +146,6 @@ public class ArrowField
 	public int getArrowsInRow() { return arrowsInRow; }
 
 	public  int getArrowsInColumn() { return arrowsInColumn; }
-		
-	
 
+	
 }

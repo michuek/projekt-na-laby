@@ -36,39 +36,29 @@ public class VectorPanel extends JPanel
 		this.addComponentListener(new ComponentListener() {		//TWORZY NOWE POLE WEKTOROWE I RYSUJE JE GDY ZMIENIA SIE ROZMIAR OKNA
 			
 			@Override
-			public void componentShown(ComponentEvent e) {
-				// TODO Auto-generated method stub
+			public void componentShown(ComponentEvent e) { }
 				
-			}
+			@Override
+			public void componentMoved(ComponentEvent e) {  }
+				
+			@Override
+			public void componentHidden(ComponentEvent e) { }
 			
 			@Override
 			public void componentResized(ComponentEvent e) 
 			{
 				arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), (VectorPanel) e.getComponent());
-				
-			}
-			
-			@Override
-			public void componentMoved(ComponentEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void componentHidden(ComponentEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
 	}
 	
 	
-	
-	public static void startThread () //Powoduje wywolanie metody run statku spaceship1
+	public static void startSpaceshipThread () //Powoduje wywolanie metody run statku spaceship1 i odswiezania sladu za nim
 	{
-		ExecutorService exec = Executors.newFixedThreadPool(1);
+		ExecutorService exec = Executors.newFixedThreadPool(2);
 		spaceship1 = new Spaceship();
 		exec.execute(spaceship1);
+		exec.execute(spaceship1.getPath());
 		exec.shutdown();
 	}
 	

@@ -57,7 +57,7 @@ public class StartStopButton extends JButton {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VectorPanel.startThread(); //statek zaczyna dzialac
+				VectorPanel.startSpaceshipThread(); //statek zaczyna dzialac
 				
 			}
 		});
