@@ -16,10 +16,8 @@ public class StartStopButton extends JButton {
 
 	public StartStopButton() 
 	{
-		super("START/STOP");
+		super("START");
 		
-
-
 		addKeyListener(new KeyListener() {
 			
 			@Override

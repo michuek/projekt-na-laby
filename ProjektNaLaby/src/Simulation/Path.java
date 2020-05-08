@@ -102,7 +102,7 @@ public class Path implements Runnable
 	@Override
 	public void run() 
 	{
-		while (true)
+		while (Spaceship.keepRunning)
 		{
 			this.setProperColorsToPath();
 			try { Thread.sleep(1000); } 		//co 1s aktualizuje kolor sciezki
@@ -111,6 +111,8 @@ public class Path implements Runnable
 		
 	}
 	
+	public List<Point> getListOfPositions() {return ListOfPositions;}
+	public List<Double> getListOfSpeeds() {return ListOfSpeeds;}	
 		
 
 }

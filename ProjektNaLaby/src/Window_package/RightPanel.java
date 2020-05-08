@@ -19,9 +19,10 @@ public class RightPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	StartStopButton startStopButton;
+	JButton pauseButton;
+	JButton stopButton;
 	
 	public static String lastJTextField = new String();
-	
 	
 	JTextField fX;
 	JTextField fY;
@@ -38,7 +39,7 @@ public class RightPanel extends JPanel {
 
 	public RightPanel(VectorPanel vPanel) 
 	{
-		setLayout(new GridLayout(18, 1, 5, 5));
+		setLayout(new GridLayout(20, 1, 5, 5));
 		add(new JLabel(" "));
 		
 		fX = new JTextField("F(x)=");
@@ -231,18 +232,31 @@ public class RightPanel extends JPanel {
 		
 		startStopButton = new StartStopButton();
 		add(startStopButton);
+
+		pauseButton = new JButton("PAUSE");
+		pauseButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VectorPanel.pauseSpaceshipThread();
+				
+			}
+		});
+		add(pauseButton);
+		
+		stopButton = new JButton("STOP");
+		stopButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				VectorPanel.stopSpaceshipThread();
+				
+			}
+		});
+		add(stopButton);
 		
 		add(new JLabel(" "));
 		
-		/*ActionListener aStart = new ActionListener() // Rozpoczyna symulacjê ruchu statku
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				vPanel.startThread(); //statek zaczyna dzialac
-				
-			}
-		};	startStopButton.addActionListener(aStart);*/
 	}
 
 }

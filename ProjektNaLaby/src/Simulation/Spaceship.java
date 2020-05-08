@@ -17,6 +17,7 @@ public class Spaceship implements Runnable
 	public static double arrowKeyAccX = 0.0;
 	public static double arrowKeyAccY = 0.0;
 	public static double thrust = 100.0;
+	public static boolean keepRunning = false;
 	
 	private double xCurrentSpeed;
 	private double yCurrentSpeed;
@@ -47,6 +48,7 @@ public class Spaceship implements Runnable
 		dt = SimulationSettings.getDt();
 		
 		path = new Path(2, this);
+		
 	}
 	
 
@@ -102,7 +104,7 @@ public class Spaceship implements Runnable
 	@Override			
 	public void run() 			// PERFORMING SIMULATION
 	{
-		while (true)
+		while (keepRunning)
 		{
 			this.performSimulatingStep();		
 			try { Thread.sleep(SimulationSettings.getSpeedOfSimulation()); } 		// graphical speed of movement 	[0-fast 	10-slow]
@@ -117,7 +119,5 @@ public class Spaceship implements Runnable
 	public double getyCurrentSpeed() { return yCurrentSpeed; }
 	
 	public Path getPath() { return path; }
-		
-
 
 }

@@ -26,6 +26,10 @@ public class VectorPanel extends JPanel
 	
 	private static Spaceship spaceship1;
 	
+	static ExecutorService exec;
+	
+	private static boolean stopOrPause = true;// stop == true, pause == false
+	
 	public VectorPanel() 
 	{
 		setBackground(Color.BLACK);
@@ -55,11 +59,24 @@ public class VectorPanel extends JPanel
 	
 	public static void startSpaceshipThread () //Powoduje wywolanie metody run statku spaceship1 i odswiezania sladu za nim
 	{
-		ExecutorService exec = Executors.newFixedThreadPool(2);
-		spaceship1 = new Spaceship();
+		exec = Executors.newFixedThreadPool(2);
+		if(stopOrPause)
+			{spaceship1 = new Spaceship();}
+		Spaceship.keepRunning = true;
 		exec.execute(spaceship1);
 		exec.execute(spaceship1.getPath());
 		exec.shutdown();
+	}
+	
+	public static void pauseSpaceshipThread()
+	{
+		Spaceship.keepRunning = false;
+		stopOrPause = false;
+	}
+	public static void stopSpaceshipThread()
+	{
+		Spaceship.keepRunning = false;
+		stopOrPause = true;
 	}
 	
 	public void paintComponent(Graphics g) 	//Rysowanie siatki, pola i statku
@@ -86,6 +103,10 @@ public class VectorPanel extends JPanel
 		}
 		spaceship1.paint(g2d, this);
 		repaint();
+	}
+	
+	public Spaceship getSpaceship() {
+		return spaceship1;
 	}
 	
 
