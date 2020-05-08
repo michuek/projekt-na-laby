@@ -3,12 +3,16 @@ package Window_package;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 import Simulation.Path;
 import Simulation.SimulationSettings;
@@ -30,18 +34,36 @@ public class MainMenu extends JMenuBar {
 		menu.add(otworz);
 		
 		zapisz = new JMenuItem("Zapisz");
-		zapisz.addActionListener(new ActionListener() {
-			
+		zapisz.addActionListener(new ActionListener() 
+		{
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					br = new BufferedWriter(new FileWriter(path));
-					copy(window.vectorPanel.getSpaceship().getPath());
-					br.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+			public void actionPerformed(ActionEvent e) 
+			{
+				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				jfc.setAcceptAllFileFilterUsed(false);		//TYLKO PLIKI TXT DO NADPISANIA
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt files", "txt");
+				jfc.addChoosableFileFilter(filter);
+				int returnValue = jfc.showSaveDialog(null);
 				
+				if (returnValue == JFileChooser.APPROVE_OPTION) 
+				{
+					File selectedFile = jfc.getSelectedFile();
+					String path = selectedFile.getAbsolutePath();
+					if(!path.endsWith(".txt"))
+					{
+						path= path +".txt";
+					}
+					//Dictation.saveCurrentDictationToFile(path);
+					try 
+					{
+						br = new BufferedWriter(new FileWriter(path));
+						copy(window.vectorPanel.getSpaceship().getPath());
+						br.close();
+					} catch (IOException e1) 
+					{
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
 		menu.add(zapisz);
