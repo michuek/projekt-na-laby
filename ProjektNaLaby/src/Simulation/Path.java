@@ -15,8 +15,6 @@ public class Path implements Runnable
 	List<Point> ListOfPositions;
 	List<Double> ListOfSpeeds;
 	List<Color> ListOfColors;
-	//Color LOW = SimulationSettings.g;
-	//Color HIGH = Color.WHITE;
 	
 	Double maksSpeed;
 	Double lowestSpeed;
@@ -43,24 +41,54 @@ public class Path implements Runnable
 	public void addSpeedToPath (Double v)
 	{
 		ListOfSpeeds.add(v);
-		if (v > maksSpeed )	
+		if (SimulationSettings.isColoredPath())
 		{
-			maksSpeed = v;
-			maksDeltaSpeed = maksSpeed - lowestSpeed;
-			ListOfColors.add(SimulationSettings.getHIGHpath());	
-			//setProperColorsToPath();
+			if (v > maksSpeed )	
+			{
+				maksSpeed = v;
+				maksDeltaSpeed = maksSpeed - lowestSpeed;
+				ListOfColors.add(SimulationSettings.getHIGHpath());	
+			}
+			else if (v <lowestSpeed) 
+			{
+				lowestSpeed = v;
+				maksDeltaSpeed = maksSpeed - lowestSpeed;
+				ListOfColors.add(SimulationSettings.getLOWpath());
+			}
+			else 
+			{
+				double ratio = (v-lowestSpeed)/(maksDeltaSpeed);
+				addColorRatioToList(ratio);
+			}
 		}
-		else if (v <lowestSpeed) 
+		else
 		{
-			lowestSpeed = v;
-			maksDeltaSpeed = maksSpeed - lowestSpeed;
-			ListOfColors.add(SimulationSettings.getLOWpath());
-			//setProperColorsToPath();
+			addStandardColorToList();
+			if (v > maksSpeed )	
+			{
+				maksSpeed = v;
+				maksDeltaSpeed = maksSpeed - lowestSpeed;
+			}
+			else if (v <lowestSpeed) 
+			{
+				lowestSpeed = v;
+				maksDeltaSpeed = maksSpeed - lowestSpeed;
+			}
 		}
-		else 
+		
+	}
+	
+	
+	void addStandardColorToList ()
+	{
+		ListOfColors.add(SimulationSettings.getStandardPathColor());
+	}
+	
+	public void changePathColorIntoStandardColor ()
+	{
+		for (int i=0; i<ListOfSpeeds.size(); i++)
 		{
-			double ratio = (v-lowestSpeed)/(maksDeltaSpeed);
-			addColorRatioToList(ratio);
+			ListOfColors.set(i, SimulationSettings.getStandardPathColor());
 		}
 	}
 	
@@ -72,7 +100,7 @@ public class Path implements Runnable
 		ListOfColors.add(new Color(red, green, blue));
 	}
 	
-	void setProperColorsToPath()
+	public void setProperColorsToPath()
 	{
 		for (int i=0; i<ListOfSpeeds.size(); i++)
 		{
@@ -102,7 +130,7 @@ public class Path implements Runnable
 	@Override
 	public void run() 
 	{
-		while (Spaceship.keepRunning)
+		while (Spaceship.keepRunning && SimulationSettings.isColoredPath())
 		{
 			this.setProperColorsToPath();
 			try { Thread.sleep(1000); } 		//co 1s aktualizuje kolor sciezki

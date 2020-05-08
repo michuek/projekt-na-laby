@@ -66,7 +66,7 @@ public class Spaceship implements Runnable
 		
 	}
 	
-	void updateVelocity ()
+	void updateVelocity (boolean colored)
 	{
 		path.addSpeedToPath(Math.sqrt(xCurrentSpeed*xCurrentSpeed + yCurrentSpeed*yCurrentSpeed));
 		xCurrentSpeed += (xAcceleration + arrowKeyAccX) * dt;
@@ -80,10 +80,10 @@ public class Spaceship implements Runnable
 		yCurrentPos += yCurrentSpeed * dt;
 	}
 	
-	public void performSimulatingStep ()
+	public void performSimulatingStep (boolean colored)
 	{
 		updateAcceleration(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString());
-		updateVelocity();
+		updateVelocity(colored);
 		updatePosition();
 		
 		time = time + dt;
@@ -106,7 +106,7 @@ public class Spaceship implements Runnable
 	{
 		while (keepRunning)
 		{
-			this.performSimulatingStep();		
+			this.performSimulatingStep(SimulationSettings.isColoredPath());		
 			try { Thread.sleep(SimulationSettings.getSpeedOfSimulation()); } 		// graphical speed of movement 	[0-fast 	10-slow]
 			catch (InterruptedException e) {  }
 		}

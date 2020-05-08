@@ -27,6 +27,9 @@ public class SimulationSettings
 	static Color HIGHpath=Color.WHITE;
 	
 	static Color spaceshipColor = Color.YELLOW;
+	static Color standardPathColor = Color.GREEN;
+	
+	static boolean coloredPath = true;
 
 	public SimulationSettings() 	//NIEUZYWANY JESZCE
 	{
@@ -90,7 +93,11 @@ public class SimulationSettings
 	
 	public static Color getSpaceshipColor() { return spaceshipColor; }
 	public static void setSpaceshipColor(Color SpaceshipColor) { spaceshipColor = SpaceshipColor; }
-		
 	
+	public static Color getStandardPathColor() { return standardPathColor; }
+	public static void setStandardPathColor(Color StandardPathColor) { standardPathColor = StandardPathColor; }
 
+	public static boolean isColoredPath() { return coloredPath; }
+	public static void setColoredPath(boolean coloredPath) { SimulationSettings.coloredPath = coloredPath; }
+		
 }

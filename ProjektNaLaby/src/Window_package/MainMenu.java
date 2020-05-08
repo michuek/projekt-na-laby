@@ -12,7 +12,6 @@ import javax.swing.JMenuItem;
 
 import Simulation.Path;
 import Simulation.SimulationSettings;
-import Simulation.Spaceship;
 
 public class MainMenu extends JMenuBar {
 

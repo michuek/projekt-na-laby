@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -27,7 +28,7 @@ public class OpcjeWindow extends JFrame
 		this.add(new SpeedOfSimulationSlider(), BorderLayout.PAGE_START);
 		
 		JPanel choosingColorPanel = new JPanel();
-		choosingColorPanel.setLayout(new GridLayout(2,4));
+		choosingColorPanel.setLayout(new GridLayout(2,5));
 		
 		//SPACESHIP COLOR CHOOSER********************************************
 		JButton chooseSpaceshipColor = new JButton("Spaceship color");
@@ -66,7 +67,22 @@ public class OpcjeWindow extends JFrame
 		}); choosingColorPanel.add(chooseHighPathColor);
 		//END OF PATH HIGH SPEEED COLOR CHOOSER *************************************
 		
-		choosingColorPanel.add(new JPanel());	//pusty panel dla lepszego ulozenia guzikow w menu
+		choosingColorPanel.add(new JPanel()); //pusty panel aby zachowaæ uk³ad przycisków
+		
+		//PATH STANDARD COLOR CHOOSER ********************************************
+		JButton chooseStandardPathColor = new JButton("Path color");
+		chooseStandardPathColor.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				SimulationSettings.setStandardPathColor(JColorChooser.showDialog(null, "Standardowy kolor œladu", SimulationSettings.getHIGHpath()));
+				vPanel.getSpaceship().getPath().changePathColorIntoStandardColor();
+			}
+		}); choosingColorPanel.add(chooseStandardPathColor);
+		//END OF PATHSTANDARD COLOR CHOOSER *************************************
+		
+		
 		
 		//WEAK FORCE COLOR CHOOSER ********************************************
 		JButton chooseWeakForceColor = new JButton("Weak force color");
@@ -94,6 +110,44 @@ public class OpcjeWindow extends JFrame
 			}
 		}); choosingColorPanel.add(chooseStrongForceColor);
 		//END OF PATH HIGH SPEEED COLOR CHOOSER *************************************
+		
+		//CHOOSING IF PATH SHOULD BE COLORED ==================================================================
+				String[] fontStrings = { "Path colored" , "Path uncolored" };
+				JComboBox<String> jComboBox = new JComboBox<>(fontStrings);
+				JComboBox<String> chooserPathColor = jComboBox;
+				if (SimulationSettings.isColoredPath())
+				{
+					chooserPathColor.setSelectedIndex(0);
+				}
+				else
+				{
+					chooserPathColor.setSelectedIndex(1);
+				}
+				
+				chooserPathColor.addActionListener(new ActionListener()
+				{	
+					@Override
+					public void actionPerformed(ActionEvent e) 
+					{
+						@SuppressWarnings("unchecked")
+						JComboBox<String> cb = (JComboBox<String>)e.getSource();
+						String colored = (String)cb.getSelectedItem();
+						
+						if(colored == "Path colored")
+						{
+							SimulationSettings.setColoredPath(true);
+							vPanel.getSpaceship().getPath().setProperColorsToPath();
+						}	
+				        if(colored == "Path uncolored")
+				        {
+				        	SimulationSettings.setColoredPath(false);
+				        	vPanel.getSpaceship().getPath().changePathColorIntoStandardColor();
+				        }
+				        	
+					}
+				});
+				choosingColorPanel.add(chooserPathColor);
+				//END OF CHOOSING IF PATH SHOULD BE COLORED ============================================================
 		
 		
 		
