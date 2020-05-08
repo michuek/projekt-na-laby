@@ -58,6 +58,21 @@ public class StartStopButton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
+				MainMenu.parameters = new String();
+				MainMenu.parameters += (SimulationSettings.getxTrueForceInString());
+				MainMenu.parameters += ('\n');
+				MainMenu.parameters += (SimulationSettings.getyTrueForceInString());
+				MainMenu.parameters += ('\n');
+				MainMenu.parameters += (new Double(SimulationSettings.getX0Pos()).toString());
+				MainMenu.parameters += ('\n');
+				MainMenu.parameters += (new Double(SimulationSettings.getY0Pos()).toString());
+				MainMenu.parameters += ('\n');
+				MainMenu.parameters += (new Double(SimulationSettings.getV0X()).toString());
+				MainMenu.parameters += ('\n');
+				MainMenu.parameters += (new Double(SimulationSettings.getV0Y()).toString());
+				MainMenu.parameters += ('\n');
+				MainMenu.parameters += (new Double(SimulationSettings.getMass()).toString());
+				MainMenu.parameters += ('\n');
 				VectorPanel.startSpaceshipThread(); //statek zaczyna dzialac
 			}
 		});

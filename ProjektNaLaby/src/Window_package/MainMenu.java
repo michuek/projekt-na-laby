@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.LineNumberReader;
 
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -26,11 +28,41 @@ public class MainMenu extends JMenuBar {
 	
 	BufferedWriter br;
 	final String path = "simulation_history.txt";
+	
+	public static String parameters;
 
 	public MainMenu(MainWindow window) {
 		menu = new JMenu("Plik");
 		
 		otworz = new JMenuItem("Otworz");
+		otworz.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				jfc.setAcceptAllFileFilterUsed(false);		//TYLKO PLIKI TXT DO NADPISANIA
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt files", "txt");
+				jfc.addChoosableFileFilter(filter);
+				int returnValue = jfc.showOpenDialog(null);
+				if(returnValue == JFileChooser.APPROVE_OPTION)
+				{
+					try {
+						LineNumberReader lr = new LineNumberReader(new FileReader(jfc.getSelectedFile()));
+						SimulationSettings.setxTrueForceInString(lr.readLine());
+						SimulationSettings.setyTrueForceInString(lr.readLine());
+						SimulationSettings.setX0Pos(Double.parseDouble(lr.readLine()));
+						SimulationSettings.setY0Pos(Double.parseDouble(lr.readLine()));
+						SimulationSettings.setV0X(Double.parseDouble(lr.readLine()));
+						SimulationSettings.setV0Y(Double.parseDouble(lr.readLine()));
+						SimulationSettings.setMass(Double.parseDouble(lr.readLine()));
+						lr.close();
+					} catch (IOException e) {
+					e.printStackTrace();
+					}
+				}
+				
+			}
+		});
 		menu.add(otworz);
 		
 		zapisz = new JMenuItem("Zapisz");
@@ -57,6 +89,8 @@ public class MainMenu extends JMenuBar {
 					try 
 					{
 						br = new BufferedWriter(new FileWriter(path));
+						br.write(parameters);
+						br.write('\n');
 						copy(window.vectorPanel.getSpaceship().getPath());
 						br.close();
 					} catch (IOException e1) 
