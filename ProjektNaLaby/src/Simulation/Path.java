@@ -15,8 +15,8 @@ public class Path implements Runnable
 	List<Point> ListOfPositions;
 	List<Double> ListOfSpeeds;
 	List<Color> ListOfColors;
-	Color LOW = Color.BLACK;
-	Color HIGH = Color.WHITE;
+	//Color LOW = SimulationSettings.g;
+	//Color HIGH = Color.WHITE;
 	
 	Double maksSpeed;
 	Double lowestSpeed;
@@ -47,14 +47,14 @@ public class Path implements Runnable
 		{
 			maksSpeed = v;
 			maksDeltaSpeed = maksSpeed - lowestSpeed;
-			ListOfColors.add(HIGH);	
+			ListOfColors.add(SimulationSettings.getHIGHpath());	
 			//setProperColorsToPath();
 		}
 		else if (v <lowestSpeed) 
 		{
 			lowestSpeed = v;
 			maksDeltaSpeed = maksSpeed - lowestSpeed;
-			ListOfColors.add(LOW);
+			ListOfColors.add(SimulationSettings.getLOWpath());
 			//setProperColorsToPath();
 		}
 		else 
@@ -66,9 +66,9 @@ public class Path implements Runnable
 	
 	void addColorRatioToList (double ratio)
 	{
-		int red = (int)Math.abs((ratio * HIGH.getRed()) + ((1 - ratio) * LOW.getRed()));
-		int green = (int)Math.abs((ratio * HIGH.getGreen()) + ((1 - ratio) * LOW.getGreen()));
-		int blue = (int)Math.abs((ratio * HIGH.getBlue()) + ((1 - ratio) * LOW.getBlue()));
+		int red = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getRed()) + ((1 - ratio) * SimulationSettings.getLOWpath().getRed()));
+		int green = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getGreen()) + ((1 - ratio) * SimulationSettings.getLOWpath().getGreen()));
+		int blue = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getBlue()) + ((1 - ratio) * SimulationSettings.getLOWpath().getBlue()));
 		ListOfColors.add(new Color(red, green, blue));
 	}
 	
@@ -78,9 +78,9 @@ public class Path implements Runnable
 		{
 			//ratio is from range [0 , 1]
 			double ratio = (ListOfSpeeds.get(i) - lowestSpeed) / maksDeltaSpeed;
-			int red = (int)Math.abs((ratio * HIGH.getRed()) + ((1 - ratio) * LOW.getRed()));
-			int green = (int)Math.abs((ratio * HIGH.getGreen()) + ((1 - ratio) * LOW.getGreen()));
-			int blue = (int)Math.abs((ratio * HIGH.getBlue()) + ((1 - ratio) * LOW.getBlue()));
+			int red = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getRed()) + ((1 - ratio) * SimulationSettings.getLOWpath().getRed()));
+			int green = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getGreen()) + ((1 - ratio) * SimulationSettings.getLOWpath().getGreen()));
+			int blue = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getBlue()) + ((1 - ratio) * SimulationSettings.getLOWpath().getBlue()));
 			ListOfColors.set(i, new Color(red, green, blue));
 		}
 	}

@@ -1,6 +1,5 @@
 package Simulation;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -27,7 +26,6 @@ public class Spaceship implements Runnable
 	private double time;
 	private double dt;
 	
-	private Color colorOfSpaceship = Color.YELLOW;
 	private int diameter = 50;
 	
 	private Path path;
@@ -94,7 +92,7 @@ public class Spaceship implements Runnable
 	public void paint(Graphics g, VectorPanel vPanel)
 	{
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.setColor(getColor());
+		g2D.setColor(SimulationSettings.getSpaceshipColor());
 		g2D.fillOval((int) (vPanel.getWidth()/2 + xCurrentPos - diameter/2), (int) (vPanel.getHeight()/2 - yCurrentPos - diameter/2), 50, 50);
 		path.paint(g2D, vPanel);
 		
@@ -111,9 +109,6 @@ public class Spaceship implements Runnable
 			catch (InterruptedException e) {  }
 		}
 	}
-	
-	public Color getColor() { return colorOfSpaceship; }
-	public void setColor(Color color) { this.colorOfSpaceship = color; }
 	
 	public static void setArrowKeyAccX(double ax){arrowKeyAccX = ax;}
 	public static void setArrowKeyAccY(double ay){arrowKeyAccY = ay;}

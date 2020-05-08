@@ -6,6 +6,7 @@ import javax.script.ScriptException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import Simulation.SimulationSettings;
 import Window_package.Arrow;
 import Window_package.RightPanel;
 import Window_package.VectorPanel;
@@ -22,6 +23,7 @@ public class ArrowField
 	int badXArrowsAmount;
 	int badYArrowsAmount;
 	double largestForceValue;
+	double lowestForceValue;
 	
 	
 	public ArrowField(String fxString, String fyString, VectorPanel vPanel) 
@@ -34,7 +36,7 @@ public class ArrowField
 		ySpaceBetweenArrows = vPanel.getHeight()/(arrowsInColumn);
 		this.arrowArray = new Arrow [arrowsInRow][arrowsInColumn];
 		this.createForceField(fxString, fyString, vPanel);
-		this.findLargestForceValue();
+		this.findLargestAndLowestForceValue();
 		this.setProperColorsToArrows();
 		VerifyEquation();
 	}
@@ -100,9 +102,10 @@ public class ArrowField
 		}
 	}
 
-	void findLargestForceValue ()
+	void findLargestAndLowestForceValue ()
 	{
-		double largest=0;
+		double largest=arrowArray[0][0].getMagnitude();
+		double lowest =arrowArray[0][0].getMagnitude();
 		for (int i=0; i<arrowsInRow; i++)
 		{
 			for (int j=0; j<arrowsInColumn; j++)
@@ -111,9 +114,14 @@ public class ArrowField
 				{
 					largest = arrowArray[i][j].getMagnitude();
 				}
+				if(arrowArray[i][j].getMagnitude() < lowest)
+				{
+					lowest = arrowArray[i][j].getMagnitude();
+				}
 			}
 		}
 		largestForceValue = largest;
+		lowestForceValue = lowest;
 	}
 	
 	public double getLargestForceValue()
@@ -121,18 +129,21 @@ public class ArrowField
 		return largestForceValue;
 	}
 	
-	void setProperColorsToArrows()
+	public double getLowestForceValue()
 	{
-		Color LOW = Color.RED;
-		Color HIGH = Color.BLUE;
+		return lowestForceValue;
+	}
+	
+	public void setProperColorsToArrows()
+	{
 		for (int i=0; i<arrowsInRow; i++)
 		{
 			for (int j=0; j<arrowsInColumn; j++)
 			{			//ratio is from range [0 , 1]
-				double ratio = arrowArray[i][j].getMagnitude() / largestForceValue;
-				int red = (int)Math.abs((ratio * LOW.getRed()) + ((1 - ratio) * HIGH.getRed()));
-				int green = (int)Math.abs((ratio * LOW.getGreen()) + ((1 - ratio) * HIGH.getGreen()));
-				int blue = (int)Math.abs((ratio * LOW.getBlue()) + ((1 - ratio) * HIGH.getBlue()));
+				double ratio = (arrowArray[i][j].getMagnitude() - lowestForceValue) / (largestForceValue - lowestForceValue);
+				int red = (int)Math.abs((ratio * SimulationSettings.getHIGHarrow().getRed()) + ((1 - ratio) * SimulationSettings.getLOWarrow().getRed()));
+				int green = (int)Math.abs((ratio * SimulationSettings.getHIGHarrow().getGreen()) + ((1 - ratio) * SimulationSettings.getLOWarrow().getGreen()));
+				int blue = (int)Math.abs((ratio * SimulationSettings.getHIGHarrow().getBlue()) + ((1 - ratio) * SimulationSettings.getLOWarrow().getBlue()));
 				arrowArray[i][j].setColor(new Color(red, green, blue));
 			}
 		}

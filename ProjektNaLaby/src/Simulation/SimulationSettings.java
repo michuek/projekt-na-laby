@@ -1,5 +1,7 @@
 package Simulation;
 
+import java.awt.Color;
+
 public class SimulationSettings 
 {
 	static double x0Pos=100;
@@ -17,6 +19,14 @@ public class SimulationSettings
 	
 	static String xTrueForceInString = "-1*firstVariable";			//domyslne Fx
 	static String yTrueForceInString = "-1*secondVariable";			//domyslne Fy
+	
+	static Color LOWarrow = Color.BLUE;
+	static Color HIGHarrow = Color.RED;
+	
+	static Color LOWpath = Color.DARK_GRAY;
+	static Color HIGHpath=Color.WHITE;
+	
+	static Color spaceshipColor = Color.YELLOW;
 
 	public SimulationSettings() 	//NIEUZYWANY JESZCE
 	{
@@ -65,5 +75,22 @@ public class SimulationSettings
 	public static String getyTrueForceInString() { return yTrueForceInString; }
 	public static void setyTrueForceInString(String yTrueForceInString) { SimulationSettings.yTrueForceInString = yTrueForceInString; }
 	//END OF GETTERS AND SETERS*****************************
+
+	public static Color getLOWarrow() { return LOWarrow; }
+	public static void setLOWarrow(Color lOWarrow) { LOWarrow = lOWarrow; }
+		
+
+	public static Color getHIGHarrow() { return HIGHarrow; }
+	public static void setHIGHarrow(Color hIGHarrow) { HIGHarrow = hIGHarrow; }
+	
+	public static Color getLOWpath() { return LOWpath; }
+	public static void setLOWpath(Color lOWpath) { LOWpath = lOWpath; }
+	public static Color getHIGHpath() { return HIGHpath; }
+	public static void setHIGHpath(Color hIGHpath) { HIGHpath = hIGHpath; }
+	
+	public static Color getSpaceshipColor() { return spaceshipColor; }
+	public static void setSpaceshipColor(Color SpaceshipColor) { spaceshipColor = SpaceshipColor; }
+		
+	
 
 }

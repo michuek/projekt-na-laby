@@ -220,7 +220,7 @@ public class RightPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				OpcjeWindow opcje = new OpcjeWindow();
+				OpcjeWindow opcje = new OpcjeWindow(vPanel);
 				opcje.setVisible(true);
 			}
 		});
