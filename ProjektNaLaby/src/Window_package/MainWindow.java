@@ -31,4 +31,21 @@ public class MainWindow extends JFrame {
 		rightPanel = new RightPanel(vectorPanel);
 		add(rightPanel, BorderLayout.LINE_END);
 	}
+	
+	
+	public VectorPanel getVectorPanel() {
+		return vectorPanel;
+	}
+
+	public void setVectorPanel(VectorPanel vectorPanel) {
+		this.vectorPanel = vectorPanel;
+	}
+
+	public RightPanel getRightPanel() {
+		return rightPanel;
+	}
+
+	public void setRightPanel(RightPanel rightPanel) {
+		this.rightPanel = rightPanel;
+	}
 }

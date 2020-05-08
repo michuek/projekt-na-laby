@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+import MathPackage.ArrowField;
 import Simulation.Path;
 import Simulation.SimulationSettings;
 
@@ -55,6 +56,7 @@ public class MainMenu extends JMenuBar {
 						SimulationSettings.setV0X(Double.parseDouble(lr.readLine()));
 						SimulationSettings.setV0Y(Double.parseDouble(lr.readLine()));
 						SimulationSettings.setMass(Double.parseDouble(lr.readLine()));
+						window.getVectorPanel().arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), window.getVectorPanel());
 						lr.close();
 					} catch (IOException e) {
 					e.printStackTrace();

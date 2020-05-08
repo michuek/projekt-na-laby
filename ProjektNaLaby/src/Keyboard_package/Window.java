@@ -24,7 +24,8 @@ public class Window extends JFrame
 	
 	KeysPanel keysPanel;
 	
-	public Window(String arg0, JTextField f, VectorPanel vPanel) throws HeadlessException {
+	public Window(String arg0, JTextField f, VectorPanel vPanel) throws HeadlessException 
+	{
 		super(arg0);
 		setSize(600, 400);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -65,6 +66,7 @@ public class Window extends JFrame
 		keysPanel.naturalLogarythm.addActionListener(new KeysListener());
 		keysPanel.firtstVariableButoon.addActionListener(new KeysListener());
 		keysPanel.secondVariableButton.addActionListener(new KeysListener());
+		
 	}
 	
 	
