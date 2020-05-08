@@ -109,5 +109,9 @@ public class VectorPanel extends JPanel
 		return spaceship1;
 	}
 	
+	public void setSpaceship(Spaceship s) {
+		spaceship1 = s;
+	}
+	
 
 }

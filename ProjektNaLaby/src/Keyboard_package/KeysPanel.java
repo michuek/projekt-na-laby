@@ -17,7 +17,9 @@ import javax.swing.SwingUtilities;
 
 import MathPackage.ArrowField;
 import Simulation.SimulationSettings;
+import Simulation.Spaceship;
 import Window_package.MainClass;
+import Window_package.MainWindow;
 import Window_package.RightPanel;
 import Window_package.VectorPanel;
 
@@ -62,6 +64,7 @@ public class KeysPanel extends JPanel
 	JButton ok;
 	
 	JTextField field;
+	VectorPanel vectorPanel;
 	
 	
 	//KONSTRUKTOR KLAWIATURY===================================================================
@@ -73,6 +76,7 @@ public class KeysPanel extends JPanel
 		}
 		
 		field = f;
+		vectorPanel = vPanel;
 		
 		setLayout(new GridLayout(gridRows, gridColumns, gridHgap, gridVgap));
 		fontSize = 15;
@@ -581,6 +585,8 @@ public class KeysPanel extends JPanel
 				win.dispose();											//zamyka klawiature
 				
 				RightPanel.keyboardUsageCounter++;
+				
+				vectorPanel.setSpaceship(new Spaceship());
 			}
 		}; ok.addActionListener(okButtonListener);
 		

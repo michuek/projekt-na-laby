@@ -48,4 +48,5 @@ public class MainWindow extends JFrame {
 	public void setRightPanel(RightPanel rightPanel) {
 		this.rightPanel = rightPanel;
 	}
+
 }
