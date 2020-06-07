@@ -11,6 +11,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import Window_package.VectorPanel;
+
 public class Window extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +24,8 @@ public class Window extends JFrame
 	
 	KeysPanel keysPanel;
 	
-	public Window(String arg0, JTextField f) throws HeadlessException {
+	public Window(String arg0, JTextField f, VectorPanel vPanel) throws HeadlessException 
+	{
 		super(arg0);
 		setSize(600, 400);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -33,7 +36,7 @@ public class Window extends JFrame
 		field.setFont(new Font(null, Font.PLAIN, fontSize));
 		add(field, BorderLayout.PAGE_START);
 		
-		keysPanel = new KeysPanel(this, f);
+		keysPanel = new KeysPanel(this, f, vPanel);
 		add(keysPanel, BorderLayout.CENTER);
 		
 		for(int i = 0; i < 10; i++) { keysPanel.digits[i].addActionListener(new KeysListener()); }
@@ -63,6 +66,7 @@ public class Window extends JFrame
 		keysPanel.naturalLogarythm.addActionListener(new KeysListener());
 		keysPanel.firtstVariableButoon.addActionListener(new KeysListener());
 		keysPanel.secondVariableButton.addActionListener(new KeysListener());
+		
 	}
 	
 	

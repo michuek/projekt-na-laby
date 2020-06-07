@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
 		setSize(800, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		menuBar = new MainMenu();
+		menuBar = new MainMenu(this);
 		setJMenuBar(menuBar);
 		
 		setLayout(new BorderLayout());
@@ -28,7 +28,25 @@ public class MainWindow extends JFrame {
 		vectorPanel = new VectorPanel();
 		add(vectorPanel, BorderLayout.CENTER);
 
-		rightPanel = new RightPanel();
+		rightPanel = new RightPanel(vectorPanel);
 		add(rightPanel, BorderLayout.LINE_END);
 	}
+	
+	
+	public VectorPanel getVectorPanel() {
+		return vectorPanel;
+	}
+
+	public void setVectorPanel(VectorPanel vectorPanel) {
+		this.vectorPanel = vectorPanel;
+	}
+
+	public RightPanel getRightPanel() {
+		return rightPanel;
+	}
+
+	public void setRightPanel(RightPanel rightPanel) {
+		this.rightPanel = rightPanel;
+	}
+
 }
