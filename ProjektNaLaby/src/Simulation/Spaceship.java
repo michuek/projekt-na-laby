@@ -27,8 +27,6 @@ public class Spaceship implements Runnable
 	private double time;
 	private double dt;
 	
-	private int diameter = 50;
-	
 	private Path path;
 	public Spaceship() 
 	{
@@ -97,7 +95,6 @@ public class Spaceship implements Runnable
 		g2D.setColor(SimulationSettings.getSpaceshipColor());
 		g2D.fillOval((int) (vPanel.getWidth()/2 + xCurrentPos - diameter/2), (int) (vPanel.getHeight()/2 - yCurrentPos - diameter/2), 50, 50);
 		path.paint(g2D, vPanel);
-		
     }//END HOW TO DRAW THE SPACESHIP*****************************
 	
 	

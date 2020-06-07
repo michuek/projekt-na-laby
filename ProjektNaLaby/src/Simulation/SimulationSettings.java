@@ -4,6 +4,7 @@ import java.awt.Color;
 
 public class SimulationSettings 
 {
+
 	static double x0Pos=100;
 	static double y0Pos=200;
 	
