@@ -34,7 +34,7 @@ public class MainMenu extends JMenuBar {
 	public static String parameters;
 
 	public MainMenu(MainWindow window) {
-		menu = new JMenu("Plik");
+		menu = new JMenu(MainClass.language.getMenuBarText());
 		
 		otworz = new JMenuItem("Otworz");
 		otworz.addActionListener(new ActionListener() {

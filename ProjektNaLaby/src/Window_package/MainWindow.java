@@ -18,6 +18,7 @@ public class MainWindow extends JFrame {
 	{
 		super(arg0);
 		setSize(800, 700);
+		setTitle(MainClass.language.getFrameTitleText());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		menuBar = new MainMenu(this);

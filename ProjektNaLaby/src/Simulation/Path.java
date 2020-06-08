@@ -110,15 +110,23 @@ public class Path implements Runnable
 	
 	public void setProperColorsToPath()
 	{
-		for (int i=0; i<ListOfSpeeds.size(); i++)
+		if (SimulationSettings.coloredPath)
 		{
-			//ratio is from range [0 , 1]
-			double ratio = (ListOfSpeeds.get(i) - VectorPanel.getSpaceship1().totalLowestSpeed) / VectorPanel.getSpaceship1().totalMaksDeltaSpeed;
-			int red = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getRed()) + ((1 - ratio) * SimulationSettings.getLOWpath().getRed()));
-			int green = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getGreen()) + ((1 - ratio) * SimulationSettings.getLOWpath().getGreen()));
-			int blue = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getBlue()) + ((1 - ratio) * SimulationSettings.getLOWpath().getBlue()));
-			ListOfColors.set(i, new Color(red, green, blue));
+			for (int i=0; i<ListOfSpeeds.size(); i++)
+			{
+				//ratio is from range [0 , 1]
+				double ratio = (ListOfSpeeds.get(i) - VectorPanel.getSpaceship1().totalLowestSpeed) / VectorPanel.getSpaceship1().totalMaksDeltaSpeed;
+				int red = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getRed()) + ((1 - ratio) * SimulationSettings.getLOWpath().getRed()));
+				int green = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getGreen()) + ((1 - ratio) * SimulationSettings.getLOWpath().getGreen()));
+				int blue = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getBlue()) + ((1 - ratio) * SimulationSettings.getLOWpath().getBlue()));
+				ListOfColors.set(i, new Color(red, green, blue));
+			}
 		}
+		else
+		{
+			changePathColorIntoStandardColor();
+		}
+		
 	}
 	
 	public Color getLastColor()

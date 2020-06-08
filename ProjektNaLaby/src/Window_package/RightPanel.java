@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import Keyboard_package.Window;
@@ -33,6 +35,11 @@ public class RightPanel extends JPanel {
 	JTextField vY;
 	JTextField m;
 	JButton options;
+	
+	JPanel panelForGroupOfJRadiobuttons;
+	static JRadioButton Polish;
+	static JRadioButton English;
+	ButtonGroup chooseLanguage;
 	
 	public static int keyboardUsageCounter = 0;
 	public static int badKeyboardUsageCounter = 0;
@@ -214,6 +221,72 @@ public class RightPanel extends JPanel {
 		add(m);
 		
 		add(new JLabel(" "));
+		//LANGUAGE SELECTION
+		panelForGroupOfJRadiobuttons = new JPanel();
+		panelForGroupOfJRadiobuttons.setLayout(new GridLayout(2,1));
+		English = new JRadioButton("English");
+		Polish = new JRadioButton("Polish");
+		chooseLanguage = new ButtonGroup();
+		
+		chooseLanguage.add(English);
+		chooseLanguage.add(Polish);
+		Polish.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				MainClass.language = new Language.Polish();
+				
+				MainClass.frame.setTitle(MainClass.language.getFrameTitleText());
+				
+				MainClass.frame.menuBar.menu.setText(MainClass.language.getMenuBarText());
+				MainClass.frame.menuBar.otworz.setText(MainClass.language.getMenuOptionOpenText());
+				MainClass.frame.menuBar.zapisz.setText(MainClass.language.getMenuOptionSaveText());
+				
+				MainClass.frame.rightPanel.m.setText(MainClass.language.getTypeInMassText());
+				MainClass.frame.rightPanel.options.setText(MainClass.language.getOptionsButtonText());
+				MainClass.frame.rightPanel.pauseButton.setText(MainClass.language.getPauseButtonText());
+				MainClass.frame.rightPanel.rX.setText(MainClass.language.getTypeInPosisionXText());
+				MainClass.frame.rightPanel.rY.setText(MainClass.language.getTypeInPosisionYText());
+				MainClass.frame.rightPanel.vX.setText(MainClass.language.getTypeInSpeedXText());
+				MainClass.frame.rightPanel.vY.setText(MainClass.language.getTypeInSpeedYText());
+				
+				MainClass.frame.repaint();
+			}
+		});
+		
+		English.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				MainClass.language = new Language.English();
+				
+				MainClass.frame.setTitle(MainClass.language.getFrameTitleText());
+				
+				MainClass.frame.menuBar.menu.setText(MainClass.language.getMenuBarText());
+				MainClass.frame.menuBar.otworz.setText(MainClass.language.getMenuOptionOpenText());
+				MainClass.frame.menuBar.zapisz.setText(MainClass.language.getMenuOptionSaveText());
+				
+				MainClass.frame.rightPanel.m.setText(MainClass.language.getTypeInMassText());
+				MainClass.frame.rightPanel.options.setText(MainClass.language.getOptionsButtonText());
+				MainClass.frame.rightPanel.pauseButton.setText(MainClass.language.getPauseButtonText());
+				MainClass.frame.rightPanel.rX.setText(MainClass.language.getTypeInPosisionXText());
+				MainClass.frame.rightPanel.rY.setText(MainClass.language.getTypeInPosisionYText());
+				MainClass.frame.rightPanel.vX.setText(MainClass.language.getTypeInSpeedXText());
+				MainClass.frame.rightPanel.vY.setText(MainClass.language.getTypeInSpeedYText());
+				
+				MainClass.frame.repaint();
+			}
+		});
+		
+		Polish.setSelected(true);
+		
+		panelForGroupOfJRadiobuttons.add(English);
+		panelForGroupOfJRadiobuttons.add(Polish);
+
+		this.add(panelForGroupOfJRadiobuttons);
+		//**************************************************************************
 		add(new JLabel(" "));
 		
 		options = new JButton("Opcje");
@@ -227,8 +300,6 @@ public class RightPanel extends JPanel {
 			}
 		});
 		add(options);
-		
-		add(new JLabel(" "));
 		add(new JLabel(" "));
 		
 		startStopButton = new StartStopButton();
@@ -255,6 +326,7 @@ public class RightPanel extends JPanel {
 			}
 		});
 		add(stopButton);
+		
 		
 		add(new JLabel(" "));
 		

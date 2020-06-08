@@ -8,6 +8,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Simulation.SimulationSettings;
+import Window_package.MainClass;
 
 public class SpeedOfSimulationSlider extends JSlider implements ChangeListener
 {
@@ -20,9 +21,9 @@ public class SpeedOfSimulationSlider extends JSlider implements ChangeListener
 	{
 		super();
 		Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
-		labelTable.put( sliderMinValue, new JLabel("Fast") );
-		labelTable.put((sliderMaxValue - sliderMinValue)/2 , new JLabel("Speed of simulation"));
-		labelTable.put( sliderMaxValue, new JLabel("Slow") );
+		labelTable.put( sliderMinValue, new JLabel(MainClass.language.getFastSpeedOfSimulationText()));
+		labelTable.put((sliderMaxValue - sliderMinValue)/2 , new JLabel(MainClass.language.getSpeedOfsimulationSliderText()));
+		labelTable.put( sliderMaxValue, new JLabel(MainClass.language.getSlowSpedOfSimulationText()) );
 		this.setInverted(true);
 		
 		this.setLabelTable( labelTable );
