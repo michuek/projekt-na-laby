@@ -71,7 +71,7 @@ public class KeysPanel extends JPanel
 	{		//info jak uzywac klawiatury za pierwszym razem i po zlym poprzednim uzyciu
 		if (RightPanel.isLastKeyboardUsageWasCorrect == false ||  RightPanel.keyboardUsageCounter==0)
 		{
-			JOptionPane.showMessageDialog(new JFrame(), "Uwaga\n 2sin(5)  --- zle\n 2*sin(5) --- dobrze", "INFO", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(new JFrame(), MainClass.language.getKeyboardJumingMessageText(), "INFO", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		field = f;
