@@ -242,6 +242,7 @@ public class RightPanel extends JPanel {
 				MainClass.frame.menuBar.menu.setText(MainClass.language.getMenuBarText());
 				MainClass.frame.menuBar.otworz.setText(MainClass.language.getMenuOptionOpenText());
 				MainClass.frame.menuBar.zapisz.setText(MainClass.language.getMenuOptionSaveText());
+				MainClass.frame.menuBar.zapiszObraz.setText(MainClass.language.getMenuOptionSaveImageText());
 				
 				MainClass.frame.rightPanel.m.setText(MainClass.language.getTypeInMassText());
 				MainClass.frame.rightPanel.options.setText(MainClass.language.getOptionsButtonText());
@@ -267,6 +268,7 @@ public class RightPanel extends JPanel {
 				MainClass.frame.menuBar.menu.setText(MainClass.language.getMenuBarText());
 				MainClass.frame.menuBar.otworz.setText(MainClass.language.getMenuOptionOpenText());
 				MainClass.frame.menuBar.zapisz.setText(MainClass.language.getMenuOptionSaveText());
+				MainClass.frame.menuBar.zapiszObraz.setText(MainClass.language.getMenuOptionSaveImageText());
 				
 				MainClass.frame.rightPanel.m.setText(MainClass.language.getTypeInMassText());
 				MainClass.frame.rightPanel.options.setText(MainClass.language.getOptionsButtonText());

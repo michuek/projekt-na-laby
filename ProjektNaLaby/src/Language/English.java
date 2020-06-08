@@ -8,6 +8,7 @@ public class English extends TextLanguageTemplate
 		menuBarText = "File";
 		MenuOptionOpenText = "Open";
 		MenuOptionSaveText = "Save";
+		MenuOptionSaveImageText = "Save image";
 		typeInPosisionXText = "Type in rx";
 		typeInPosisionYText = "Type in ry";
 		typeInSpeedXText = "Type in vx";

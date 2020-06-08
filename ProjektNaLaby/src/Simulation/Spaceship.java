@@ -34,6 +34,7 @@ public class Spaceship implements Runnable
 	private int diameter = 50;
 	private List<Path> ListOfPaths;
 	private Path path;
+	Path totalPathJustForSaving;
 	double totalMaksSpeed=1;
 	double totalLowestSpeed=0;
 	double totalMaksDeltaSpeed =1;
@@ -56,6 +57,7 @@ public class Spaceship implements Runnable
 		dt = SimulationSettings.getDt();
 		ListOfPaths = new LinkedList<Path>();
 		path = new Path(2, this);
+		totalPathJustForSaving = new Path(2, this);
 		//Thread t1 = new Thread (path);
 		//t1.start();
 	}
@@ -78,6 +80,7 @@ public class Spaceship implements Runnable
 	synchronized void updateVelocity (boolean colored)
 	{ 
 		path.addSpeedToPath(Math.sqrt(xCurrentSpeed*xCurrentSpeed + yCurrentSpeed*yCurrentSpeed));
+		totalPathJustForSaving.addSpeedToPath(Math.sqrt(xCurrentSpeed*xCurrentSpeed + yCurrentSpeed*yCurrentSpeed));
 		xCurrentSpeed += (xAcceleration + arrowKeyAccX) * dt;
 		yCurrentSpeed += (yAcceleration + arrowKeyAccY) * dt;	
 	}
@@ -85,6 +88,7 @@ public class Spaceship implements Runnable
 	synchronized void updatePosition()
 	{
 		path.addPositionToPath(new Point((int) xCurrentPos, (int)yCurrentPos));
+		totalPathJustForSaving.addPositionToPath(new Point((int) xCurrentPos, (int)yCurrentPos));
 		xCurrentPos += xCurrentSpeed * dt;
 		yCurrentPos += yCurrentSpeed * dt;
 	}
@@ -191,6 +195,16 @@ public class Spaceship implements Runnable
 
 	public void setListOfPaths(List<Path> listOfPaths) {
 		ListOfPaths = listOfPaths;
+	}
+
+
+	public Path getTotalPathJustForSaving() {
+		return totalPathJustForSaving;
+	}
+
+
+	public void setTotalPathJustForSaving(Path totalPathJustForSaving) {
+		this.totalPathJustForSaving = totalPathJustForSaving;
 	}
 
 }

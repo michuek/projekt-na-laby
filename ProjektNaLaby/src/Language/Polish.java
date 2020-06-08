@@ -8,6 +8,7 @@ public class Polish extends TextLanguageTemplate {
 		menuBarText = "Plik";
 		MenuOptionOpenText = "Otwórz";
 		MenuOptionSaveText = "Zapisz";
+		MenuOptionSaveImageText = "Zapisz obraz";
 		typeInPosisionXText = "Podaj rx";
 		typeInPosisionYText = "Podaj ry";
 		typeInSpeedXText = "Podaj vx";
@@ -33,6 +34,7 @@ public class Polish extends TextLanguageTemplate {
 		PathColorChooserTitleText ="Wybierz kolor œladu.";
 		weakForceColorChooserTitleText = "Wybierz kolor silnego pola.";
 		strongForceColorChooserTitleText = "Wybierz kolor s³abego pola.";
+		
 	}
 
 }

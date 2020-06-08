@@ -1,7 +1,9 @@
 package Window_package;
 
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -9,16 +11,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import MathPackage.ArrowField;
 import Simulation.Path;
 import Simulation.SimulationSettings;
+
 
 //uzywana przez MainWindow
 public class MainMenu extends JMenuBar {
@@ -27,6 +33,7 @@ public class MainMenu extends JMenuBar {
 	JMenu menu;
 	JMenuItem otworz;
 	JMenuItem zapisz;
+	JMenuItem zapiszObraz;
 	
 	BufferedWriter br;
 	final String path = "simulation_history.txt";
@@ -89,13 +96,12 @@ public class MainMenu extends JMenuBar {
 					{
 						path= path +".txt";
 					}
-					//Dictation.saveCurrentDictationToFile(path);
 					try 
 					{
 						br = new BufferedWriter(new FileWriter(path));
 						br.write(parameters);
 						br.write('\n');
-						copy(window.vectorPanel.getSpaceship().getPath());
+						copy(window.vectorPanel.getSpaceship().getTotalPathJustForSaving());
 						br.close();
 					} catch (IOException e1) 
 					{
@@ -105,7 +111,35 @@ public class MainMenu extends JMenuBar {
 			}
 		});
 		menu.add(zapisz);
-
+		
+		zapiszObraz = new JMenuItem("zapisz Obraz");
+		zapiszObraz.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				BufferedImage image = new BufferedImage(MainClass.frame.vectorPanel.getWidth(), MainClass.frame.vectorPanel.getHeight(),BufferedImage.TYPE_INT_ARGB);
+				Graphics2D g2d = image.createGraphics();
+				MainClass.frame.vectorPanel.paintAll(g2d);
+				
+				//Okienko z miejscem na podanie nazwy pliku
+				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				int returnValue = jfc.showSaveDialog(null);
+				if (returnValue == JFileChooser.APPROVE_OPTION) 
+				{
+					File selectedFile = jfc.getSelectedFile();
+					try
+					{	//Zapis do pliku
+						ImageIO.write(image, "png", selectedFile);
+					} 
+					catch (IOException event) 
+					{	//Okienko z informacja o bledzie
+						JOptionPane.showMessageDialog(new JFrame(), "ERROR", "Image can't be saved", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+			}
+		}); menu.add(zapiszObraz);
+		
 		add(menu);
 	}
 	

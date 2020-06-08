@@ -6,6 +6,7 @@ public abstract class TextLanguageTemplate
 	 String menuBarText;
 	 String MenuOptionOpenText;
 	 String MenuOptionSaveText;
+	 String MenuOptionSaveImageText;
 	 String typeInPosisionXText;
 	 String typeInPosisionYText;
 	 String typeInSpeedXText;
@@ -30,7 +31,6 @@ public abstract class TextLanguageTemplate
 	 String strongForceColorChooserTitleText;
 	 String pathColoredOptionText;
 	 String pathUncoloredOptionText;
-	
 	public TextLanguageTemplate() 
 	{
 		// TODO Auto-generated constructor stub
@@ -258,6 +258,14 @@ public abstract class TextLanguageTemplate
 
 	public void setStrongForceColorChooserTitleText(String strongForceColorChooserTitleText) {
 		this.strongForceColorChooserTitleText = strongForceColorChooserTitleText;
+	}
+
+	public String getMenuOptionSaveImageText() {
+		return MenuOptionSaveImageText;
+	}
+
+	public void setMenuOptionSaveImageText(String menuOptionSaveImageText) {
+		MenuOptionSaveImageText = menuOptionSaveImageText;
 	}
 
 	
