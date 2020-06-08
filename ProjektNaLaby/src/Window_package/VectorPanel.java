@@ -14,6 +14,7 @@ import MathPackage.ArrowField;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
 
+//uzywana przez MainWindow
 public class VectorPanel extends JPanel 
 {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +23,7 @@ public class VectorPanel extends JPanel
 	static BasicStroke axisStroke = new BasicStroke(1);
 	static BasicStroke vectorStroke = new BasicStroke(1);
 
-	public ArrowField arrowField;
+	public static ArrowField arrowField;
 	
 	private static Spaceship spaceship1;
 	
@@ -64,7 +65,6 @@ public class VectorPanel extends JPanel
 			{spaceship1 = new Spaceship();}
 		Spaceship.keepRunning = true;
 		exec.execute(spaceship1);
-		exec.execute(spaceship1.getPath());
 		exec.shutdown();
 	}
 	
@@ -111,6 +111,16 @@ public class VectorPanel extends JPanel
 	
 	public void setSpaceship(Spaceship s) {
 		spaceship1 = s;
+	}
+
+
+	public static Spaceship getSpaceship1() {
+		return spaceship1;
+	}
+
+
+	public static void setSpaceship1(Spaceship spaceship1) {
+		VectorPanel.spaceship1 = spaceship1;
 	}
 	
 

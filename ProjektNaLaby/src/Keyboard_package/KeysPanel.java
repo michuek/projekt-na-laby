@@ -19,7 +19,6 @@ import MathPackage.ArrowField;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
 import Window_package.MainClass;
-import Window_package.MainWindow;
 import Window_package.RightPanel;
 import Window_package.VectorPanel;
 
@@ -577,7 +576,7 @@ public class KeysPanel extends JPanel
 				case "m": SimulationSettings.setMass(Double.parseDouble(prawdziwyEfektKlikania));break;
 				}
 				
-				vPanel.arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), vPanel);
+				VectorPanel.arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), vPanel);
 				
 				MainClass.frame.repaint();								//odswieza
 				JComponent comp = (JComponent) e.getSource();

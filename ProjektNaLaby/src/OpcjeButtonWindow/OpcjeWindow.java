@@ -92,7 +92,7 @@ public class OpcjeWindow extends JFrame
 			public void actionPerformed(ActionEvent e) 
 			{
 				SimulationSettings.setLOWarrow(JColorChooser.showDialog(null, "Kolor pola o ma³ej sile", SimulationSettings.getLOWarrow()));
-				vPanel.arrowField.setProperColorsToArrows();
+				VectorPanel.arrowField.setProperColorsToArrows();
 			}
 		}); choosingColorPanel.add(chooseWeakForceColor);
 		//END OF PATH HIGH SPEEED COLOR CHOOSER *************************************
@@ -106,7 +106,7 @@ public class OpcjeWindow extends JFrame
 			public void actionPerformed(ActionEvent e) 
 			{
 				SimulationSettings.setHIGHarrow(JColorChooser.showDialog(null, "Kolor pola o du¿ej sile", SimulationSettings.getHIGHarrow()));
-				vPanel.arrowField.setProperColorsToArrows();
+				VectorPanel.arrowField.setProperColorsToArrows();
 			}
 		}); choosingColorPanel.add(chooseStrongForceColor);
 		//END OF PATH HIGH SPEEED COLOR CHOOSER *************************************

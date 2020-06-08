@@ -13,7 +13,7 @@ public class SpeedOfSimulationSlider extends JSlider implements ChangeListener
 {
 	private static final long serialVersionUID = 1L;
 
-	int sliderMinValue = 0;
+	int sliderMinValue = 1;
 	int sliderMaxValue = 40;
 	
 	public SpeedOfSimulationSlider() 

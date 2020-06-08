@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import Keyboard_package.Window;
 import OpcjeButtonWindow.OpcjeWindow;
 
+//uzywana przez MainWindow
 public class RightPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;

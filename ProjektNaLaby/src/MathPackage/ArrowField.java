@@ -11,7 +11,8 @@ import Window_package.Arrow;
 import Window_package.RightPanel;
 import Window_package.VectorPanel;
 
-public class ArrowField 
+//UZYWANA PRZEZ VECTOR PANEL
+public class ArrowField
 {
 	final int arrowsInRow = 10;
 	final int arrowsInColumn = 15;
@@ -25,7 +26,6 @@ public class ArrowField
 	double largestForceValue;
 	double lowestForceValue;
 	
-	
 	public ArrowField(String fxString, String fyString, VectorPanel vPanel) 
 	{
 		this.badXArrowsAmount = 0;
@@ -33,9 +33,9 @@ public class ArrowField
 		this.fxString = fxString;
 		this.fyString = fyString;
 		xSpaceBetweenArrows = vPanel.getWidth()/(arrowsInRow);
-		ySpaceBetweenArrows = vPanel.getHeight()/(arrowsInColumn);
+		ySpaceBetweenArrows =  vPanel.getHeight()/(arrowsInColumn);
 		this.arrowArray = new Arrow [arrowsInRow][arrowsInColumn];
-		this.createForceField(fxString, fyString, vPanel);
+		this.createForceField(fxString, fyString,  vPanel);
 		this.findLargestAndLowestForceValue();
 		this.setProperColorsToArrows();
 		VerifyEquation();
@@ -76,6 +76,8 @@ public class ArrowField
 			}
 		}
 	}
+	
+	
 	
 	public void VerifyEquation ()
 	{

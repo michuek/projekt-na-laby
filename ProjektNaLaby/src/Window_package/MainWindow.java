@@ -5,12 +5,12 @@ import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 
+//UZYWANA PRZEZ MainClass
 public class MainWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	MainMenu menuBar;
-	
 	VectorPanel vectorPanel;
 	RightPanel rightPanel;
 

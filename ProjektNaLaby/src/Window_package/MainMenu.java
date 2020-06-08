@@ -20,6 +20,7 @@ import MathPackage.ArrowField;
 import Simulation.Path;
 import Simulation.SimulationSettings;
 
+//uzywana przez MainWindow
 public class MainMenu extends JMenuBar {
 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +39,7 @@ public class MainMenu extends JMenuBar {
 		otworz = new JMenuItem("Otworz");
 		otworz.addActionListener(new ActionListener() {
 			
+			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());

@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
-
 import Window_package.VectorPanel;
 
 public class Path implements Runnable
@@ -16,7 +15,7 @@ public class Path implements Runnable
 	List<Double> ListOfSpeeds;
 	List<Color> ListOfColors;
 	
-	Double maksSpeed;
+	Double maksSpeed ;
 	Double lowestSpeed;
 	Double maksDeltaSpeed = 1.0;
 
@@ -28,8 +27,18 @@ public class Path implements Runnable
 		ListOfSpeeds = new LinkedList<Double>();
 		ListOfColors = new LinkedList<Color>();
 		
-		maksSpeed = Math.sqrt(ship.getxCurrentSpeed()*ship.getxCurrentSpeed() + ship.getyCurrentSpeed()*ship.getyCurrentSpeed());
-		lowestSpeed = maksSpeed;
+		if(ship.getListOfPaths().size()<=1)
+		{
+			maksSpeed = Math.sqrt(ship.getxCurrentSpeed()*ship.getxCurrentSpeed() + ship.getyCurrentSpeed()*ship.getyCurrentSpeed());
+			lowestSpeed = maksSpeed;
+		}
+		else
+		{
+			maksSpeed = ship.totalMaksSpeed;
+			lowestSpeed = ship.totalLowestSpeed;
+			maksDeltaSpeed = ship.totalMaksDeltaSpeed;
+		}
+		
 	}
 	
 	public void addPositionToPath (Point p)
@@ -53,7 +62,7 @@ public class Path implements Runnable
 			{
 				lowestSpeed = v;
 				maksDeltaSpeed = maksSpeed - lowestSpeed;
-				ListOfColors.add(SimulationSettings.getLOWpath());
+				ListOfColors.add(SimulationSettings.getHIGHpath());	
 			}
 			else 
 			{
@@ -75,7 +84,6 @@ public class Path implements Runnable
 				maksDeltaSpeed = maksSpeed - lowestSpeed;
 			}
 		}
-		
 	}
 	
 	
@@ -105,7 +113,7 @@ public class Path implements Runnable
 		for (int i=0; i<ListOfSpeeds.size(); i++)
 		{
 			//ratio is from range [0 , 1]
-			double ratio = (ListOfSpeeds.get(i) - lowestSpeed) / maksDeltaSpeed;
+			double ratio = (ListOfSpeeds.get(i) - VectorPanel.getSpaceship1().totalLowestSpeed) / VectorPanel.getSpaceship1().totalMaksDeltaSpeed;
 			int red = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getRed()) + ((1 - ratio) * SimulationSettings.getLOWpath().getRed()));
 			int green = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getGreen()) + ((1 - ratio) * SimulationSettings.getLOWpath().getGreen()));
 			int blue = (int)Math.abs((ratio * SimulationSettings.getHIGHpath().getBlue()) + ((1 - ratio) * SimulationSettings.getLOWpath().getBlue()));
@@ -113,27 +121,42 @@ public class Path implements Runnable
 		}
 	}
 	
+	public Color getLastColor()
+	{
+		return (ListOfColors.get(ListOfColors.size()-1));
+	}
+	public Point getLastPosition()
+	{
+		return (ListOfPositions.get(ListOfPositions.size()-1));
+	}
+	public double getLastSpeed()
+	{
+		return (ListOfSpeeds.get(ListOfSpeeds.size()-1));
+	}
+	
 	
 	//HOW TO DRAW THE PATH********************************* VERSION WITH ADJUSTABLE COLOR 
 		public void paint(Graphics g, VectorPanel vPanel)
 		{
+			
 			Graphics2D g2D = (Graphics2D) g;
 			for(int i=0; i<ListOfPositions.size() - 1; i++)
 			{
 				g2D.setColor(ListOfColors.get(i));
 				g2D.fillOval(vPanel.getWidth()/2 + ListOfPositions.get(i).x-pathRadius, vPanel.getHeight()/2 - ListOfPositions.get(i).y-pathRadius, pathRadius*2, pathRadius*2);
 			}
+			
 		}//END HOW TO DRAW THE PATH*****************************
 
 		
-		
+	
 	@Override
-	public void run() 
+	public  void  run() 
 	{
 		while (Spaceship.keepRunning && SimulationSettings.isColoredPath())
 		{
-			this.setProperColorsToPath();
-			try { Thread.sleep(1000); } 		//co 1s aktualizuje kolor sciezki
+			setProperColorsToPath();
+			try { Thread.sleep(20); } 		//co 20 ms aktualizuje kolor sciezki (rysowangeo fragmentu tylko)
 			catch (InterruptedException e) {  }
 		}
 		
