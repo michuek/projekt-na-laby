@@ -29,6 +29,8 @@ import Simulation.SimulationSettings;
 
 //uzywana przez MainWindow
 public class MainMenu extends JMenuBar {
+	
+	static BaseFrame frame = new BaseFrame();
 
 	private static final long serialVersionUID = 1L;
 	JMenu menu;

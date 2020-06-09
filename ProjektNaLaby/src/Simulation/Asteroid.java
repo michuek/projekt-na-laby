@@ -133,13 +133,13 @@ public class Asteroid implements Runnable {
 		if(d1 < d2)
 			{VectorPanel.stopSpaceshipThread();}
 		if( (xCurrentPos - diameter) > (vPanel.getWidth()/2) )
-			{VectorPanel.stopSpaceshipThread();}
+			{randomPos();}
 		if( (xCurrentPos + diameter) < (-(vPanel.getWidth()/2)) )
-			{VectorPanel.stopSpaceshipThread();}
+			{randomPos();}
 		if( (yCurrentPos - diameter) > (vPanel.getHeight()/2) )
-			{VectorPanel.stopSpaceshipThread();}
+			{randomPos();}
 		if( (yCurrentPos + diameter) < (-(vPanel.getHeight()/2)) )
-			{VectorPanel.stopSpaceshipThread();}
+			{randomPos();}
 		
 		x1 = (int) (vPanel.getLaser().getxCurrentPos());
 		y1 = (int) (vPanel.getLaser().getyCurrentPos());

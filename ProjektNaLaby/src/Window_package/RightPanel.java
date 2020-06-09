@@ -241,8 +241,20 @@ public class RightPanel extends JPanel {
 				
 				MainClass.frame.menuBar.menu.setText(MainClass.language.getMenuBarText());
 				MainClass.frame.menuBar.otworz.setText(MainClass.language.getMenuOptionOpenText());
+				MainClass.frame.menuBar.openFromFile.setText(MainClass.language.getMenuOptionOpenFileText());
+				MainClass.frame.menuBar.openFromBase.setText(MainClass.language.getMenuOptionOpenBaseText());
 				MainClass.frame.menuBar.zapisz.setText(MainClass.language.getMenuOptionSaveText());
+				MainClass.frame.menuBar.saveToFile.setText(MainClass.language.getMenuOptionSaveFileText());
+				MainClass.frame.menuBar.saveToBase.setText(MainClass.language.getMenuOptionSaveBaseText());
 				MainClass.frame.menuBar.zapiszObraz.setText(MainClass.language.getMenuOptionSaveImageText());
+				
+				MainMenu.frame.setTitle(MainClass.language.getBaseTitle());
+				MainMenu.frame.localButton.setText(MainClass.language.getBaseLocal());
+				MainMenu.frame.externalButton.setText(MainClass.language.getBaseExternal());
+				MainMenu.frame.baseLabel.setText(MainClass.language.getBaseBase());
+				MainMenu.frame.nickLabel.setText(MainClass.language.getBaseNick());
+				MainMenu.frame.passLabel.setText(MainClass.language.getBasePassword());
+				MainMenu.frame.okButton.setText(MainClass.language.getBaseOk());
 				
 				MainClass.frame.rightPanel.m.setText(MainClass.language.getTypeInMassText());
 				MainClass.frame.rightPanel.options.setText(MainClass.language.getOptionsButtonText());
@@ -267,8 +279,20 @@ public class RightPanel extends JPanel {
 				
 				MainClass.frame.menuBar.menu.setText(MainClass.language.getMenuBarText());
 				MainClass.frame.menuBar.otworz.setText(MainClass.language.getMenuOptionOpenText());
+				MainClass.frame.menuBar.openFromFile.setText(MainClass.language.getMenuOptionOpenFileText());
+				MainClass.frame.menuBar.openFromBase.setText(MainClass.language.getMenuOptionOpenBaseText());
 				MainClass.frame.menuBar.zapisz.setText(MainClass.language.getMenuOptionSaveText());
+				MainClass.frame.menuBar.saveToFile.setText(MainClass.language.getMenuOptionSaveFileText());
+				MainClass.frame.menuBar.saveToBase.setText(MainClass.language.getMenuOptionSaveBaseText());
 				MainClass.frame.menuBar.zapiszObraz.setText(MainClass.language.getMenuOptionSaveImageText());
+				
+				MainMenu.frame.setTitle(MainClass.language.getBaseTitle());
+				MainMenu.frame.localButton.setText(MainClass.language.getBaseLocal());
+				MainMenu.frame.externalButton.setText(MainClass.language.getBaseExternal());
+				MainMenu.frame.baseLabel.setText(MainClass.language.getBaseBase());
+				MainMenu.frame.nickLabel.setText(MainClass.language.getBaseNick());
+				MainMenu.frame.passLabel.setText(MainClass.language.getBasePassword());
+				MainMenu.frame.okButton.setText(MainClass.language.getBaseOk());
 				
 				MainClass.frame.rightPanel.m.setText(MainClass.language.getTypeInMassText());
 				MainClass.frame.rightPanel.options.setText(MainClass.language.getOptionsButtonText());

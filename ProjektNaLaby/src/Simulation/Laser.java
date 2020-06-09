@@ -14,7 +14,7 @@ public class Laser implements Runnable {
 	double xSpeed;
 	double ySpeed;
 	int diameter;
-	boolean keepRunning;
+	private static boolean keepRunning;
 	VectorPanel vPanel;
 	
 	public Laser(Spaceship s, int xAim, int yAim, VectorPanel vp) {//===========konstruktor
@@ -74,7 +74,7 @@ public class Laser implements Runnable {
 	public int getDiameter() { return diameter; }
 	public double getxCurrentPos() { return xCurrentPos; }
 	public double getyCurrentPos() { return yCurrentPos; }
-	public void setKeepRunning(boolean bul) {keepRunning = bul;}
+	static public void setKeepRunning(boolean bul) {keepRunning = bul;}
 	public boolean getKeepRunning() { return keepRunning; }
 
 }

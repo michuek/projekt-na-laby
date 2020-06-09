@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.JButton;
+import javax.swing.SwingWorker;
 
 import Simulation.Laser;
 import Simulation.SimulationSettings;
@@ -26,13 +27,10 @@ public class StartStopButton extends JButton {
 	{
 		super("START");
 		
-		addKeyListener(new ControlListener());//sterowanie strza³kami
-		
-		addActionListener(new ActionListener() {// Rozpoczyna symulacjê ruchu statku
+		addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
+			public void actionPerformed(ActionEvent e) {
 				MainMenu.parameters = new String();
 				MainMenu.parameters += (SimulationSettings.getxTrueForceInString());
 				MainMenu.parameters += ('\n');
@@ -49,9 +47,12 @@ public class StartStopButton extends JButton {
 				MainMenu.parameters += (new Double(SimulationSettings.getMass()).toString());
 				MainMenu.parameters += ('\n');
 				VectorPanel.startSpaceshipThread(); //statek zaczyna dzialac
-				MainClass.frame.getVectorPanel().addMouseListener(new LaserListener());//piu piu laserkami
+				MainClass.frame.getVectorPanel().changeMouse(new LaserListener());;//piu piu laserkami
+				MainClass.frame.getVectorPanel().changeKey(new ControlListener());//sterowanie strza³kami
+				MainClass.frame.getVectorPanel().grabFocus();
+				
 			}
-		});
+		});// Rozpoczyna symulacjê ruchu statku
 
 	}
 	
@@ -100,13 +101,12 @@ public class StartStopButton extends JButton {
 
 		@Override
 		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 		
 	}
 	
-	class LaserListener implements MouseListener {
+	static public class LaserListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -148,4 +148,5 @@ public class StartStopButton extends JButton {
 		}
 		
 	}
+
 }

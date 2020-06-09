@@ -29,7 +29,7 @@ public class SaveToBase extends JMenuItem {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				frame = new BaseFrame();
+				frame = new BaseFrame(MainMenu.frame);
 				frame.setVisible(true);
 				
 				frame.addLocalListener(new LocalListener());

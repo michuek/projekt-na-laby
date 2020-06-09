@@ -32,8 +32,8 @@ public class ArrowField
 		this.badYArrowsAmount = 0;
 		this.fxString = fxString;
 		this.fyString = fyString;
-		xSpaceBetweenArrows = vPanel.getWidth()/(arrowsInRow);
-		ySpaceBetweenArrows =  vPanel.getHeight()/(arrowsInColumn);
+		xSpaceBetweenArrows = vPanel.getWidth()/(arrowsInRow-1);
+		ySpaceBetweenArrows =  vPanel.getHeight()/(arrowsInColumn-1);
 		this.arrowArray = new Arrow [arrowsInRow][arrowsInColumn];
 		this.createForceField(fxString, fyString,  vPanel);
 		this.findLargestAndLowestForceValue();
@@ -43,9 +43,9 @@ public class ArrowField
 	
 	public void createForceField (String fxString, String fyString, VectorPanel vPanel)
 	{
-		for (int i=0; i<arrowsInRow; i++)
+		for (int i=0; i<(arrowsInRow); i++)
 		{
-			for (int j=0; j<arrowsInColumn; j++)
+			for (int j=0; j<(arrowsInColumn); j++)
 			{
 				int xPos = (int) (-vPanel.getWidth()/2 + i*xSpaceBetweenArrows); // x nalezy (-width/2 ; width/2)
 				int yPos = (int) (-vPanel.getHeight()/2 + j*ySpaceBetweenArrows); // y nalezy (-height/2 ; height/2)

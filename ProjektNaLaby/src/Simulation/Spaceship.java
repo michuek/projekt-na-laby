@@ -18,7 +18,7 @@ public class Spaceship implements Runnable
 	
 	public static double arrowKeyAccX = 0.0;
 	public static double arrowKeyAccY = 0.0;
-	public static double thrust = 100.0;
+	public static double thrust = 500.0;
 	public static boolean keepRunning = false;
 	
 	private double xCurrentSpeed;
@@ -123,8 +123,6 @@ public class Spaceship implements Runnable
 		
 	}
 		
-	
-	
 	public void performSimulatingStep (boolean colored)
 	{
 		

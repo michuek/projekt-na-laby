@@ -6,6 +6,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,6 +20,7 @@ import Simulation.Asteroid;
 import Simulation.Laser;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
+import Window_package.StartStopButton.LaserListener;
 
 //uzywana przez MainWindow
 public class VectorPanel extends JPanel 
@@ -33,10 +38,14 @@ public class VectorPanel extends JPanel
 	private static int lAsteroid = 3;
 	private static Laser laser;
 	
+	KeyListener keyListener;
+	MouseListener mouseListener;
+	
 	static ExecutorService exec;
 	
 	private static boolean stopOrPause = true;// stop == true, pause == false
 	
+	//====================================================KONSTRUKTOR
 	public VectorPanel() 
 	{
 		setBackground(Color.BLACK);
@@ -49,7 +58,8 @@ public class VectorPanel extends JPanel
 		}
 		laser = new Laser();
 		
-		this.addComponentListener(new ComponentListener() {		//TWORZY NOWE POLE WEKTOROWE I RYSUJE JE GDY ZMIENIA SIE ROZMIAR OKNA
+		//TWORZY NOWE POLE WEKTOROWE I RYSUJE JE GDY ZMIENIA SIE ROZMIAR OKNA
+		this.addComponentListener(new ComponentListener() {
 			
 			@Override
 			public void componentShown(ComponentEvent e) { }
@@ -66,10 +76,66 @@ public class VectorPanel extends JPanel
 				arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), (VectorPanel) e.getComponent());
 			}
 		});
+	
+		keyListener = new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		addKeyListener(keyListener);
+		mouseListener = new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		addMouseListener(mouseListener);
+		
 	}
 	
-	
-	public static void startSpaceshipThread () //Powoduje wywolanie metody run statku spaceship1 i odswiezania sladu za nim
+	//=============Powoduje wywolanie metody run statku spaceship1 i odswiezania sladu za nim
+	public static void startSpaceshipThread ()
 	{
 		exec = Executors.newFixedThreadPool(3 + lAsteroid);
 		if(stopOrPause)
@@ -79,14 +145,12 @@ public class VectorPanel extends JPanel
 			for(int i = 0; i < lAsteroid; i++) {
 				asteroidy.add(new Asteroid());
 			}
-			laser = new Laser();
 		}
 		Spaceship.keepRunning = true;
 		exec.execute(spaceship1);
 		for(int i = 0; i < lAsteroid; i++) {
 			exec.execute(asteroidy.get(i));
 		}
-		exec.execute(laser);
 		exec.shutdown();
 	}
 	
@@ -131,6 +195,7 @@ public class VectorPanel extends JPanel
 		repaint();
 	}
 	
+	//====================================GETTERY I SETTERY
 	public Spaceship getSpaceship() {
 		return spaceship1;
 	}
@@ -139,11 +204,9 @@ public class VectorPanel extends JPanel
 		spaceship1 = s;
 	}
 
-
 	public static Spaceship getSpaceship1() {
 		return spaceship1;
 	}
-
 
 	public static void setSpaceship1(Spaceship spaceship1) {
 		VectorPanel.spaceship1 = spaceship1;
@@ -161,5 +224,16 @@ public class VectorPanel extends JPanel
 		laser = l;
 	}
 	
+	//====================================funkcje listenerów
+	public void changeKey(KeyListener kl) {
+		removeKeyListener(keyListener);
+		keyListener = kl;
+		addKeyListener(keyListener);
+	}
+	public void changeMouse(MouseListener ml) {
+		removeMouseListener(mouseListener);
+		mouseListener = ml;
+		addMouseListener(mouseListener);
+	}
 
 }

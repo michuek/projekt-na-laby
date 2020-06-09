@@ -5,8 +5,19 @@ public abstract class TextLanguageTemplate
 	 String frameTitleText;
 	 String menuBarText;
 	 String MenuOptionOpenText;
+	 String MenuOptionOpenFileText;
+	 String MenuOptionOpenBaseText;
 	 String MenuOptionSaveText;
+	 String MenuOptionSaveFileText;
+	 String MenuOptionSaveBaseText;
 	 String MenuOptionSaveImageText;
+	 String BaseTitle;
+	 String BaseLocal;
+	 String BaseExternal;
+	 String BaseBase;
+	 String BaseNick;
+	 String BasePassword;
+	 String BaseOk;
 	 String typeInPosisionXText;
 	 String typeInPosisionYText;
 	 String typeInSpeedXText;
@@ -60,6 +71,22 @@ public abstract class TextLanguageTemplate
 	public void setMenuOptionOpenText(String menuOptionOpenText) {
 		MenuOptionOpenText = menuOptionOpenText;
 	}
+	
+	public String getMenuOptionOpenFileText() {
+		return MenuOptionOpenFileText;
+	}
+
+	public void setMenuOptionOpenFileText(String menuOptionOpenText) {
+		MenuOptionOpenFileText = menuOptionOpenText;
+	}
+	
+	public String getMenuOptionOpenBaseText() {
+		return MenuOptionOpenBaseText;
+	}
+
+	public void setMenuOptionOpenBaseText(String menuOptionOpenText) {
+		MenuOptionOpenBaseText = menuOptionOpenText;
+	}
 
 	public String getMenuOptionSaveText() {
 		return MenuOptionSaveText;
@@ -67,6 +94,71 @@ public abstract class TextLanguageTemplate
 
 	public void setMenuOptionSaveText(String menuOptionSaveText) {
 		MenuOptionSaveText = menuOptionSaveText;
+	}
+	
+	public String getMenuOptionSaveFileText() {
+		return MenuOptionSaveFileText;
+	}
+
+	public void setMenuOptionSaveFileText(String menuOptionSaveText) {
+		MenuOptionSaveFileText = menuOptionSaveText;
+	}
+	
+	public String getMenuOptionSaveBaseText() {
+		return MenuOptionSaveBaseText;
+	}
+
+	public void setMenuOptionSaveBaseText(String menuOptionSaveText) {
+		MenuOptionSaveBaseText = menuOptionSaveText;
+	}
+	
+	public String getBaseTitle() {
+		return BaseTitle;
+	}
+	public void set(String a) {
+		BaseTitle = a;
+	}
+	
+	public String getBaseLocal() {
+		return BaseLocal;
+	}
+	public void setBaseLocal(String a) {
+		BaseLocal = a;
+	}
+	
+	public String getBaseExternal() {
+		return BaseExternal;
+	}
+	public void setBaseExternal(String a) {
+		BaseExternal = a;
+	}
+	
+	public String getBaseBase() {
+		return BaseBase;
+	}
+	public void setBaseBase(String a) {
+		BaseBase = a;
+	}
+
+	public String getBaseNick() {
+		return BaseNick;
+	}
+	public void setBaseNick(String a) {
+		BaseNick = a;
+	}
+	
+	public String getBasePassword() {
+		return BasePassword;
+	}
+	public void setBasePassword(String a) {
+		BasePassword = a;
+	}
+	
+	public String getBaseOk() {
+		return BaseOk;
+	}
+	public void setBaseOk(String a) {
+		BaseOk = a;
 	}
 
 	public String getTypeInPosisionXText() {
