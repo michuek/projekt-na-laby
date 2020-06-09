@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
 import MathPackage.ArrowField;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
-import Window_package.MainClass;
+import Window_package.AMainClass;
 import Window_package.MainWindow;
 import Window_package.RightPanel;
 import Window_package.VectorPanel;
@@ -579,7 +579,7 @@ public class KeysPanel extends JPanel
 				
 				vPanel.arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), vPanel);
 				
-				MainClass.frame.repaint();								//odswieza
+				AMainClass.frame.repaint();								//odswieza
 				JComponent comp = (JComponent) e.getSource();
 				Window win = (Window) SwingUtilities.getWindowAncestor(comp);
 				win.dispose();											//zamyka klawiature

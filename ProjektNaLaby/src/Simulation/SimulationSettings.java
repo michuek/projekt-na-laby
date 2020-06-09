@@ -13,6 +13,8 @@ public class SimulationSettings
 
 	static double mass = 1;
 	
+	static int diameter = 50;
+	
 	static double time = 0;
 	static double dt = 0.01;
 	
@@ -63,6 +65,9 @@ public class SimulationSettings
 
 	public static double getMass() { return mass; }
 	public static void setMass(double mass) { SimulationSettings.mass = mass; }
+	
+	public static int getDiameter() { return diameter; }
+	public static void setDiameter(int diameter) { SimulationSettings.diameter = diameter; }
 		
 	public static double getTime() { return time; }
 	public static void setTime(double time) { SimulationSettings.time = time; }

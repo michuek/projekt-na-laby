@@ -1,9 +1,9 @@
 package Window_package;
 
-public class MainClass 
+public class AMainClass 
 {
 	public static  MainWindow frame;
-	public MainClass() {  }
+	public AMainClass() {  }
 	
 	public static void main(String[] args) 
 	{

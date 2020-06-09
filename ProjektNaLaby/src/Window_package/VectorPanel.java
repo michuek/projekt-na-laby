@@ -6,11 +6,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.JPanel;
 import MathPackage.ArrowField;
+import Simulation.Asteroid;
+import Simulation.Laser;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
 
@@ -25,6 +30,9 @@ public class VectorPanel extends JPanel
 	public ArrowField arrowField;
 	
 	private static Spaceship spaceship1;
+	private static ArrayList<Asteroid> asteroidy;
+	private static int lAsteroid = 1;
+	private static Laser laser;
 	
 	static ExecutorService exec;
 	
@@ -36,6 +44,11 @@ public class VectorPanel extends JPanel
 		
 		arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), this);
 		spaceship1 = new Spaceship();
+		asteroidy = new ArrayList<Asteroid>();
+		for(int i = 0; i < lAsteroid; i++) {
+			asteroidy.add(new Asteroid(this));
+		}
+		laser = new Laser();
 		
 		this.addComponentListener(new ComponentListener() {		//TWORZY NOWE POLE WEKTOROWE I RYSUJE JE GDY ZMIENIA SIE ROZMIAR OKNA
 			
@@ -56,29 +69,41 @@ public class VectorPanel extends JPanel
 		});
 	}
 	
-	
+	//===========================================STATEK
 	public static void startSpaceshipThread () //Powoduje wywolanie metody run statku spaceship1 i odswiezania sladu za nim
 	{
-		exec = Executors.newFixedThreadPool(2);
+		exec = Executors.newFixedThreadPool(3 + lAsteroid);
 		if(stopOrPause)
-			{spaceship1 = new Spaceship();}
+		{
+			spaceship1 = new Spaceship();
+			asteroidy = new ArrayList<Asteroid>();
+			for(int i = 0; i < lAsteroid; i++) {
+				asteroidy.add(new Asteroid());
+			}
+			laser = new Laser();
+		}
 		Spaceship.keepRunning = true;
 		exec.execute(spaceship1);
 		exec.execute(spaceship1.getPath());
+		for(int i = 0; i < lAsteroid; i++) {
+			exec.execute(asteroidy.get(i));
+		}
+		exec.execute(laser);
 		exec.shutdown();
 	}
 	
-	public static void pauseSpaceshipThread()
+	public static void pauseSpaceshipThread() //Powoduje zapauzowanie symulacji
 	{
 		Spaceship.keepRunning = false;
 		stopOrPause = false;
 	}
-	public static void stopSpaceshipThread()
+	public static void stopSpaceshipThread() //Powoduje zastopowanie symulacji
 	{
 		Spaceship.keepRunning = false;
 		stopOrPause = true;
 	}
-	
+
+	//========================================PAINT COMPONENT
 	public void paintComponent(Graphics g) 	//Rysowanie siatki, pola i statku
 	{
 		super.paintComponent(g);
@@ -102,10 +127,15 @@ public class VectorPanel extends JPanel
 			}
 		}
 		spaceship1.paint(g2d, this);
+		for(int i = 0; i < lAsteroid; i++) {
+			asteroidy.get(i).paint(g2d, this);
+		laser.paint(g2d, this);
+		}
 		repaint();
 	}
 	
-	public Spaceship getSpaceship() {
+	//====================================GETERY I SETERY
+	static public Spaceship getSpaceship() {
 		return spaceship1;
 	}
 	
@@ -113,5 +143,16 @@ public class VectorPanel extends JPanel
 		spaceship1 = s;
 	}
 	
-
+	public ArrayList<Asteroid> getAsteroidy() {
+		return asteroidy;
+	}
+	
+	static public Laser getLaser() {
+		return laser;
+	}
+	
+	static public void setLaser(Laser l) {
+		laser = l;
+	}
+	
 }

@@ -66,6 +66,7 @@ public class RightPanel extends JPanel {
 			}
 		});
 		add(fX);
+		
 		fY = new JTextField("F(y)=");
 		fY.setName("Fy");
 		fY.addMouseListener(new MouseListener() {
@@ -115,8 +116,8 @@ public class RightPanel extends JPanel {
 				lastJTextField = "r_x";
 			}
 		});
-		
 		add(rX);
+		
 		rY = new JTextField("Podaj ry");
 		rY.setName("ry");
 		rY.addMouseListener(new MouseListener() {
@@ -164,6 +165,7 @@ public class RightPanel extends JPanel {
 			}
 		});
 		add(vX);
+		
 		vY = new JTextField("Podaj vy");
 		vY.setName("vy");
 		vY.addMouseListener(new MouseListener() {

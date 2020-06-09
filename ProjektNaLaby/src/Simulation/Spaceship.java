@@ -24,6 +24,7 @@ public class Spaceship implements Runnable
 	private double xCurrentPos;
 	private double yCurrentPos;
 	private double mass;
+	private int diameter;
 	private double time;
 	private double dt;
 	
@@ -41,6 +42,8 @@ public class Spaceship implements Runnable
 		yCurrentSpeed = SimulationSettings.getV0Y();
 		
 		mass = SimulationSettings.getMass();
+		
+		diameter = SimulationSettings.getDiameter();
 		
 		time = SimulationSettings.getTime();
 		dt = SimulationSettings.getDt();
@@ -93,7 +96,7 @@ public class Spaceship implements Runnable
 	{
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setColor(SimulationSettings.getSpaceshipColor());
-		g2D.fillOval((int) (vPanel.getWidth()/2 + xCurrentPos - diameter/2), (int) (vPanel.getHeight()/2 - yCurrentPos - diameter/2), 50, 50);
+		g2D.fillOval((int) (vPanel.getWidth()/2 + xCurrentPos - diameter/2), (int) (vPanel.getHeight()/2 - yCurrentPos - diameter/2), diameter, diameter);
 		path.paint(g2D, vPanel);
     }//END HOW TO DRAW THE SPACESHIP*****************************
 	
@@ -114,6 +117,9 @@ public class Spaceship implements Runnable
 	
 	public double getxCurrentSpeed() { return xCurrentSpeed; }
 	public double getyCurrentSpeed() { return yCurrentSpeed; }
+	
+	public double getxCurrentPos() { return xCurrentPos; }
+	public double getyCurrentPos() { return yCurrentPos; }
 	
 	public Path getPath() { return path; }
 
