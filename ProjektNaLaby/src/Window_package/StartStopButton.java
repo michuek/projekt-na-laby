@@ -49,7 +49,7 @@ public class StartStopButton extends JButton {
 				MainMenu.parameters += (new Double(SimulationSettings.getMass()).toString());
 				MainMenu.parameters += ('\n');
 				VectorPanel.startSpaceshipThread(); //statek zaczyna dzialac
-				MainClass.frame.getVectorPanel().addMouseListener(new LaserListener());
+				MainClass.frame.getVectorPanel().addMouseListener(new LaserListener());//piu piu laserkami
 			}
 		});
 
