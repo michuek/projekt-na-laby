@@ -16,10 +16,10 @@ import javax.swing.SwingWorker;
 
 import MathPackage.ArrowField;
 import Simulation.SimulationSettings;
-import Window_package.OpenFromBase.LocalListener;
-import Window_package.OpenFromBase.OkListener;
 
 public class OpenFromBase extends JMenuItem {
+	
+	private static final long serialVersionUID = 1L;
 	
 	BaseFrame frame;
 	MainWindow window;
@@ -44,6 +44,7 @@ public class OpenFromBase extends JMenuItem {
 
 	class LocalListener implements ActionListener {//=================LocalListener
 
+		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			Connection conn;
@@ -52,6 +53,7 @@ public class OpenFromBase extends JMenuItem {
 				Statement stmt =conn.createStatement();
 				stmt.execute("SELECT * FROM PARAMETERS");
 				ResultSet rs = stmt.getResultSet();
+				@SuppressWarnings("unused")
 				ResultSetMetaData md  = rs.getMetaData();
 				rs.next();
 				SimulationSettings.setxTrueForceInString(rs.getObject(1).toString());
@@ -84,6 +86,7 @@ public class OpenFromBase extends JMenuItem {
 		public void actionPerformed(ActionEvent e) {
 			SwingWorker<String, Void> worker = new SwingWorker<String, Void>() {
 
+				@SuppressWarnings("static-access")
 				@Override
 				protected String doInBackground() throws Exception {
 					try {
@@ -92,6 +95,7 @@ public class OpenFromBase extends JMenuItem {
 						Statement stmt =conn.createStatement();
 						stmt.execute("SELECT * FROM PARAMETERS");
 						ResultSet rs = stmt.getResultSet();
+						@SuppressWarnings("unused")
 						ResultSetMetaData md  = rs.getMetaData();
 						rs.next();
 						SimulationSettings.setxTrueForceInString(rs.getObject(1).toString());

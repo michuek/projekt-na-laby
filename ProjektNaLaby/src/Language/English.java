@@ -46,6 +46,8 @@ public class English extends TextLanguageTemplate
 		weakForceColorChooserTitleText = "Choose color for weak force field";
 		strongForceColorChooserTitleText = "Choose color for strong force field.";
 		menuReadySimulationsText = "Prepared simulations";
+		asteroidButtonOnText ="Asteroids ON";
+		asteroidButtonOffText ="Asteroids OFF";
 	}
 
 }

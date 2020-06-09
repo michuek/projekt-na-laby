@@ -10,12 +10,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.JButton;
-import javax.swing.SwingWorker;
-
 import Simulation.Laser;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
-import Window_package.StartStopButton.LaserListener;
 
 public class StartStopButton extends JButton {
 

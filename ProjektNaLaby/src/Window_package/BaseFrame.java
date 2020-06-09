@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 
 public class BaseFrame extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel topPanel;
 	JButton localButton;
 	JButton externalButton;

@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.Action;
-import javax.swing.Icon;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -19,6 +17,8 @@ import Simulation.SimulationSettings;
 
 public class SaveToFile extends JMenuItem {
 
+	private static final long serialVersionUID = 1L;
+	
 	BufferedWriter br;
 	final String path = "simulation_history.txt";
 

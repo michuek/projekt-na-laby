@@ -15,10 +15,11 @@ import javax.swing.SwingWorker;
 
 import Simulation.Path;
 import Simulation.SimulationSettings;
-import Window_package.SaveToBase.LocalListener;
-import Window_package.SaveToBase.OkListener;
 
 public class SaveToBase extends JMenuItem {
+	
+	private static final long serialVersionUID = 1L;
+	
 	BaseFrame frame;
 	MainWindow window;
 

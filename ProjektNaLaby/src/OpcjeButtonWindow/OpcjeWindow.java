@@ -1,7 +1,6 @@
 package OpcjeButtonWindow;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,8 +71,8 @@ public class OpcjeWindow extends JFrame
 		//END OF PATH HIGH SPEEED COLOR CHOOSER *************************************
 		
 		//CHOOSING ASTEROIDS *******************************************
-		JButton asteroidsButton = new JButton();
-		asteroidsButton.setBackground(Color.RED);
+		JButton asteroidsButton = new JButton(MainClass.language.getAsteroidButtonOffText());
+		//asteroidsButton.setBackground(Color.RED);
 		asteroidsButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -81,12 +80,14 @@ public class OpcjeWindow extends JFrame
 				if(asteroids)
 				{
 					asteroids = false;
-					asteroidsButton.setBackground(Color.RED);
+					//asteroidsButton.setBackground(Color.RED);
+					asteroidsButton.setText(MainClass.language.getAsteroidButtonOffText());
 				}
 				else
 				{
 					asteroids = true;
-					asteroidsButton.setBackground(Color.GREEN);
+					//asteroidsButton.setBackground(Color.GREEN);
+					asteroidsButton.setText(MainClass.language.getAsteroidButtonOnText());
 				}
 				
 			}

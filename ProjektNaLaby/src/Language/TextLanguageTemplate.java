@@ -43,6 +43,8 @@ public abstract class TextLanguageTemplate
 	 String pathColoredOptionText;
 	 String pathUncoloredOptionText;
 	 String menuReadySimulationsText;
+	 String asteroidButtonOnText;
+	 String asteroidButtonOffText;
 	public TextLanguageTemplate() 
 	{
 		// TODO Auto-generated constructor stub
@@ -367,6 +369,22 @@ public abstract class TextLanguageTemplate
 
 	public void setMenuReadySimulationsText(String menuReadySimulationsText) {
 		this.menuReadySimulationsText = menuReadySimulationsText;
+	}
+
+	public String getAsteroidButtonOnText() {
+		return asteroidButtonOnText;
+	}
+
+	public void setAsteroidButtonOnText(String asteroidButtonOnText) {
+		this.asteroidButtonOnText = asteroidButtonOnText;
+	}
+
+	public String getAsteroidButtonOffText() {
+		return asteroidButtonOffText;
+	}
+
+	public void setAsteroidButtonOffText(String asteroidButtonOffText) {
+		this.asteroidButtonOffText = asteroidButtonOffText;
 	}
 
 	

@@ -16,6 +16,8 @@ import Simulation.SimulationSettings;
 
 public class OpenFromFile extends JMenuItem {
 
+	private static final long serialVersionUID = 1L;
+
 	public OpenFromFile(String text, MainWindow window) {
 		super(text);
 		

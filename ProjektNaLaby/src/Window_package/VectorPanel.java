@@ -21,7 +21,6 @@ import Simulation.Asteroid;
 import Simulation.Laser;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
-import Window_package.StartStopButton.LaserListener;
 
 //uzywana przez MainWindow
 public class VectorPanel extends JPanel 

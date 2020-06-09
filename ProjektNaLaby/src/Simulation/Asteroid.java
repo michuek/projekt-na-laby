@@ -37,6 +37,7 @@ public class Asteroid implements Runnable {
 	double d2;
 	double d3;
 
+	@SuppressWarnings("static-access")
 	public Asteroid() {//==========================konstruktor bez argumentu
 		vPanel = MainClass.frame.getVectorPanel();
 		dt = SimulationSettings.getDt();
@@ -120,6 +121,7 @@ public class Asteroid implements Runnable {
 		yCurrentPos += yCurrentSpeed * dt;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void performSimulatingStep ()
 	{
 		updateAcceleration(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString());

@@ -46,7 +46,8 @@ public class Polish extends TextLanguageTemplate {
 		weakForceColorChooserTitleText = "Wybierz kolor silnego pola.";
 		strongForceColorChooserTitleText = "Wybierz kolor s³abego pola.";
 		menuReadySimulationsText = "Przyk³adowe symulacje";
-		
+		asteroidButtonOnText ="Asteroidy w³¹czone";
+		asteroidButtonOffText ="Asteroidy wy³¹czone";
 	}
 
 }
