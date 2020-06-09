@@ -16,6 +16,7 @@ import java.util.concurrent.Executors;
 
 import javax.swing.JPanel;
 import MathPackage.ArrowField;
+import OpcjeButtonWindow.OpcjeWindow;
 import Simulation.Asteroid;
 import Simulation.Laser;
 import Simulation.SimulationSettings;
@@ -137,21 +138,36 @@ public class VectorPanel extends JPanel
 	//=============Powoduje wywolanie metody run statku spaceship1 i odswiezania sladu za nim
 	public static void startSpaceshipThread ()
 	{
-		exec = Executors.newFixedThreadPool(3 + lAsteroid);
-		if(stopOrPause)
+		if(OpcjeWindow.getAsteroids())
 		{
-			spaceship1 = new Spaceship();
-			asteroidy = new ArrayList<Asteroid>();
-			for(int i = 0; i < lAsteroid; i++) {
-				asteroidy.add(new Asteroid());
+			exec = Executors.newFixedThreadPool(3 + lAsteroid);
+			if(stopOrPause)
+			{
+				spaceship1 = new Spaceship();
+				asteroidy = new ArrayList<Asteroid>();
+				for(int i = 0; i < lAsteroid; i++) {
+					asteroidy.add(new Asteroid());
+				}
 			}
+			Spaceship.keepRunning = true;
+			exec.execute(spaceship1);
+			for(int i = 0; i < lAsteroid; i++) {
+				exec.execute(asteroidy.get(i));
+			}
+			exec.shutdown();
 		}
-		Spaceship.keepRunning = true;
-		exec.execute(spaceship1);
-		for(int i = 0; i < lAsteroid; i++) {
-			exec.execute(asteroidy.get(i));
+		else
+		{
+			exec = Executors.newFixedThreadPool(3);
+			if(stopOrPause)
+			{
+				spaceship1 = new Spaceship();
+			}
+			Spaceship.keepRunning = true;
+			exec.execute(spaceship1);
+			exec.shutdown();
 		}
-		exec.shutdown();
+
 	}
 	
 	public static void pauseSpaceshipThread()

@@ -1,6 +1,7 @@
 package OpcjeButtonWindow;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,8 @@ import Window_package.VectorPanel;
 public class OpcjeWindow extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
+	
+	private static boolean asteroids = false;
 
 	public OpcjeWindow(VectorPanel vPanel) 
 	{
@@ -68,7 +71,28 @@ public class OpcjeWindow extends JFrame
 		}); choosingColorPanel.add(chooseHighPathColor);
 		//END OF PATH HIGH SPEEED COLOR CHOOSER *************************************
 		
-		choosingColorPanel.add(new JPanel()); //pusty panel aby zachowaæ uk³ad przycisków
+		//CHOOSING ASTEROIDS *******************************************
+		JButton asteroidsButton = new JButton();
+		asteroidsButton.setBackground(Color.RED);
+		asteroidsButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(asteroids)
+				{
+					asteroids = false;
+					asteroidsButton.setBackground(Color.RED);
+				}
+				else
+				{
+					asteroids = true;
+					asteroidsButton.setBackground(Color.GREEN);
+				}
+				
+			}
+		});
+		choosingColorPanel.add(asteroidsButton);
+		//END OF CHOOSING ASTEROIDS **************************************
 		
 		//PATH STANDARD COLOR CHOOSER ********************************************
 		JButton chooseStandardPathColor = new JButton(MainClass.language.getPathColorButtonText());
@@ -82,9 +106,7 @@ public class OpcjeWindow extends JFrame
 			}
 		}); choosingColorPanel.add(chooseStandardPathColor);
 		//END OF PATHSTANDARD COLOR CHOOSER *************************************
-		
-		
-		
+				
 		//WEAK FORCE COLOR CHOOSER ********************************************
 		JButton chooseWeakForceColor = new JButton(MainClass.language.getWeakForceColorButtonText());
 		chooseWeakForceColor.addActionListener(new ActionListener() 
@@ -97,7 +119,6 @@ public class OpcjeWindow extends JFrame
 			}
 		}); choosingColorPanel.add(chooseWeakForceColor);
 		//END OF PATH HIGH SPEEED COLOR CHOOSER *************************************
-		
 		
 		//STRONG FORCE COLOR CHOOSER ********************************************
 		JButton chooseStrongForceColor = new JButton(MainClass.language.getStrongForceColorButtonText());
@@ -148,11 +169,14 @@ public class OpcjeWindow extends JFrame
 					}
 				});
 				choosingColorPanel.add(chooserPathColor);
-				//END OF CHOOSING IF PATH SHOULD BE COLORED ============================================================
-		
-		
-		
+				//END OF CHOOSING IF PATH SHOULD BE COLORED ============================================================	
+				
+				
+				
+				
 		this.add(choosingColorPanel, BorderLayout.CENTER);
 	}
+	
+	public static boolean getAsteroids() { return asteroids; }
 
 }
