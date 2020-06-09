@@ -34,6 +34,7 @@ public class English extends TextLanguageTemplate
 		PathColorChooserTitleText ="WChoose path color.";
 		weakForceColorChooserTitleText = "Choose color for weak force field";
 		strongForceColorChooserTitleText = "Choose color for strong force field.";
+		menuReadySimulationsText = "Prepared simulations";
 	}
 
 }

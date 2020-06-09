@@ -22,6 +22,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import MathPackage.ArrowField;
+import Simulation.ExampleSimulations;
 import Simulation.Path;
 import Simulation.SimulationSettings;
 
@@ -34,6 +35,9 @@ public class MainMenu extends JMenuBar {
 	JMenuItem otworz;
 	JMenuItem zapisz;
 	JMenuItem zapiszObraz;
+	
+	JMenu menuSymulacje;
+	JMenuItem symulacja1, symulacja2, symulacja3;
 	
 	BufferedWriter br;
 	final String path = "simulation_history.txt";
@@ -141,6 +145,42 @@ public class MainMenu extends JMenuBar {
 		}); menu.add(zapiszObraz);
 		
 		add(menu);
+		
+		menuSymulacje = new JMenu(MainClass.language.getMenuReadySimulationsText());
+		symulacja1 = new JMenuItem("S1");
+		symulacja2 = new JMenuItem("S2");
+		symulacja3 = new JMenuItem("S3");
+		
+		symulacja1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				ExampleSimulations.createFirstSimulation();
+				
+			}
+		});menuSymulacje.add(symulacja1);
+		
+		symulacja2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				ExampleSimulations.createSecondSimulation();
+				
+			}
+		});menuSymulacje.add(symulacja2);
+		
+		
+		symulacja3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				ExampleSimulations.createThirdSimulation();
+				
+			}
+		});menuSymulacje.add(symulacja3);
+		
+		
+		add(menuSymulacje);
 	}
 	
 	void copy(Path path) {
@@ -180,5 +220,6 @@ public class MainMenu extends JMenuBar {
 			e.printStackTrace();
 		}
 	}
+	
 
 }

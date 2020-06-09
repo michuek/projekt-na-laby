@@ -66,7 +66,6 @@ public class Window extends JFrame
 		keysPanel.naturalLogarythm.addActionListener(new KeysListener());
 		keysPanel.firtstVariableButoon.addActionListener(new KeysListener());
 		keysPanel.secondVariableButton.addActionListener(new KeysListener());
-		
 	}
 	
 	

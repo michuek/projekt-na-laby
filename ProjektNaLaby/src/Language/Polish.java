@@ -34,6 +34,7 @@ public class Polish extends TextLanguageTemplate {
 		PathColorChooserTitleText ="Wybierz kolor œladu.";
 		weakForceColorChooserTitleText = "Wybierz kolor silnego pola.";
 		strongForceColorChooserTitleText = "Wybierz kolor s³abego pola.";
+		menuReadySimulationsText = "Przyk³adowe symulacje";
 		
 	}
 
