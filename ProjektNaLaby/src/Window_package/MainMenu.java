@@ -32,8 +32,12 @@ public class MainMenu extends JMenuBar {
 
 	private static final long serialVersionUID = 1L;
 	JMenu menu;
-	JMenuItem otworz;
-	JMenuItem zapisz;
+	JMenu otworz;
+	JMenu zapisz;
+	OpenFromFile openFromFile;
+	OpenFromBase openFromBase;
+	SaveToFile saveToFile;
+	SaveToBase saveToBase;
 	JMenuItem zapiszObraz;
 	
 	JMenu menuSymulacje;
@@ -47,73 +51,18 @@ public class MainMenu extends JMenuBar {
 	public MainMenu(MainWindow window) {
 		menu = new JMenu(MainClass.language.getMenuBarText());
 		
-		otworz = new JMenuItem("Otworz");
-		otworz.addActionListener(new ActionListener() {
-			
-			@SuppressWarnings("static-access")
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-				jfc.setAcceptAllFileFilterUsed(false);		//TYLKO PLIKI TXT DO NADPISANIA
-				FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt files", "txt");
-				jfc.addChoosableFileFilter(filter);
-				int returnValue = jfc.showOpenDialog(null);
-				if(returnValue == JFileChooser.APPROVE_OPTION)
-				{
-					try {
-						LineNumberReader lr = new LineNumberReader(new FileReader(jfc.getSelectedFile()));
-						SimulationSettings.setxTrueForceInString(lr.readLine());
-						SimulationSettings.setyTrueForceInString(lr.readLine());
-						SimulationSettings.setX0Pos(Double.parseDouble(lr.readLine()));
-						SimulationSettings.setY0Pos(Double.parseDouble(lr.readLine()));
-						SimulationSettings.setV0X(Double.parseDouble(lr.readLine()));
-						SimulationSettings.setV0Y(Double.parseDouble(lr.readLine()));
-						SimulationSettings.setMass(Double.parseDouble(lr.readLine()));
-						window.getVectorPanel().arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), window.getVectorPanel());
-						lr.close();
-					} catch (IOException e) {
-					e.printStackTrace();
-					}
-				}
-				
-			}
-		});
+		otworz = new JMenu("Otworz");
+		openFromFile = new OpenFromFile("Z pliku", window);
+		otworz.add(openFromFile);
+		openFromBase = new OpenFromBase("Z bazy", window);
+		otworz.add(openFromBase);
 		menu.add(otworz);
 		
-		zapisz = new JMenuItem("Zapisz");
-		zapisz.addActionListener(new ActionListener() 
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-				jfc.setAcceptAllFileFilterUsed(false);		//TYLKO PLIKI TXT DO NADPISANIA
-				FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt files", "txt");
-				jfc.addChoosableFileFilter(filter);
-				int returnValue = jfc.showSaveDialog(null);
-				
-				if (returnValue == JFileChooser.APPROVE_OPTION) 
-				{
-					File selectedFile = jfc.getSelectedFile();
-					String path = selectedFile.getAbsolutePath();
-					if(!path.endsWith(".txt"))
-					{
-						path= path +".txt";
-					}
-					try 
-					{
-						br = new BufferedWriter(new FileWriter(path));
-						br.write(parameters);
-						br.write('\n');
-						copy(window.vectorPanel.getSpaceship().getTotalPathJustForSaving());
-						br.close();
-					} catch (IOException e1) 
-					{
-						e1.printStackTrace();
-					}
-				}
-			}
-		});
+		zapisz = new JMenu("Zapisz");
+		saveToFile = new SaveToFile("Do pliku", window);
+		zapisz.add(saveToFile);
+		saveToBase = new SaveToBase("Do bazy", window);
+		zapisz.add(saveToBase);
 		menu.add(zapisz);
 		
 		zapiszObraz = new JMenuItem("zapisz Obraz");
@@ -182,44 +131,5 @@ public class MainMenu extends JMenuBar {
 		
 		add(menuSymulacje);
 	}
-	
-	void copy(Path path) {
-		double timeStamp = 0.0;
-		try {
-			br.write("time");
-			br.write('\t');
-			br.write("x");
-			br.write('\t');
-			br.write("y");
-			br.write('\t');
-			br.write("v");
-			br.write('\n');				
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		for(int i = 0; i < path.getListOfPositions().size(); i++) 
-		{
-			try {
-				br.write(new Double(timeStamp).toString());
-				br.write('\t');
-				br.write(new Double(path.getListOfPositions().get(i).getX()).toString());
-				br.write('\t');
-				br.write(new Double(path.getListOfPositions().get(i).getY()).toString());
-				br.write('\t');
-				br.write(new Double(path.getListOfSpeeds().get(i)).toString());
-				br.write('\n');				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			timeStamp += SimulationSettings.getDt();
-		}
-		
-		try {
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 
 }
