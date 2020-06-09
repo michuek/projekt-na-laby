@@ -14,6 +14,8 @@ public abstract class ExampleSimulations
 	@SuppressWarnings("static-access")
 	public static void createFirstSimulation()
 	{
+		SimulationSettings.xTrueForceInString = "0";
+		SimulationSettings.yTrueForceInString = "0";
 		SimulationSettings.x0Pos=10;
 		SimulationSettings.y0Pos = -77;
 		SimulationSettings.v0X =14;
