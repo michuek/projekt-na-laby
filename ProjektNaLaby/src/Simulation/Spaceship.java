@@ -31,7 +31,7 @@ public class Spaceship implements Runnable
 	
 	
 	
-	private int diameter = 50;
+	private int diameter;
 	private List<Path> ListOfPaths;
 	private Path path;
 	Path totalPathJustForSaving;
@@ -41,6 +41,7 @@ public class Spaceship implements Runnable
 	double ratio =0;
 	public Spaceship() 
 	{
+		diameter = SimulationSettings.getDiameter();
 		SimulationSettings.getX0Pos();
 		SimulationSettings.getY0Pos();
 		xCurrentPos = SimulationSettings.getX0Pos();
@@ -185,6 +186,9 @@ public class Spaceship implements Runnable
 	
 	public double getxCurrentSpeed() { return xCurrentSpeed; }
 	public double getyCurrentSpeed() { return yCurrentSpeed; }
+	
+	public double getxCurrentPos() { return xCurrentPos; }
+	public double getyCurrentPos() { return yCurrentPos; }
 	
 	public Path getPath() { return path; }
 

@@ -6,11 +6,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javax.swing.JPanel;
 import MathPackage.ArrowField;
+import Simulation.Asteroid;
+import Simulation.Laser;
 import Simulation.SimulationSettings;
 import Simulation.Spaceship;
 
@@ -26,6 +29,9 @@ public class VectorPanel extends JPanel
 	public static ArrowField arrowField;
 	
 	private static Spaceship spaceship1;
+	private static ArrayList<Asteroid> asteroidy;
+	private static int lAsteroid = 3;
+	private static Laser laser;
 	
 	static ExecutorService exec;
 	
@@ -37,6 +43,11 @@ public class VectorPanel extends JPanel
 		
 		arrowField = new ArrowField(SimulationSettings.getxTrueForceInString(), SimulationSettings.getyTrueForceInString(), this);
 		spaceship1 = new Spaceship();
+		asteroidy = new ArrayList<Asteroid>();
+		for(int i = 0; i < lAsteroid; i++) {
+			asteroidy.add(new Asteroid(this));
+		}
+		laser = new Laser();
 		
 		this.addComponentListener(new ComponentListener() {		//TWORZY NOWE POLE WEKTOROWE I RYSUJE JE GDY ZMIENIA SIE ROZMIAR OKNA
 			
@@ -60,11 +71,22 @@ public class VectorPanel extends JPanel
 	
 	public static void startSpaceshipThread () //Powoduje wywolanie metody run statku spaceship1 i odswiezania sladu za nim
 	{
-		exec = Executors.newFixedThreadPool(2);
+		exec = Executors.newFixedThreadPool(3 + lAsteroid);
 		if(stopOrPause)
-			{spaceship1 = new Spaceship();}
+		{
+			spaceship1 = new Spaceship();
+			asteroidy = new ArrayList<Asteroid>();
+			for(int i = 0; i < lAsteroid; i++) {
+				asteroidy.add(new Asteroid());
+			}
+			laser = new Laser();
+		}
 		Spaceship.keepRunning = true;
 		exec.execute(spaceship1);
+		for(int i = 0; i < lAsteroid; i++) {
+			exec.execute(asteroidy.get(i));
+		}
+		exec.execute(laser);
 		exec.shutdown();
 	}
 	
@@ -102,6 +124,10 @@ public class VectorPanel extends JPanel
 			}
 		}
 		spaceship1.paint(g2d, this);
+		for(int i = 0; i < lAsteroid; i++) {
+			asteroidy.get(i).paint(g2d, this);
+		laser.paint(g2d, this);
+		}
 		repaint();
 	}
 	
@@ -121,6 +147,18 @@ public class VectorPanel extends JPanel
 
 	public static void setSpaceship1(Spaceship spaceship1) {
 		VectorPanel.spaceship1 = spaceship1;
+	}
+	
+	public ArrayList<Asteroid> getAsteroidy() {
+		return asteroidy;
+	}
+	
+	static public Laser getLaser() {
+		return laser;
+	}
+	
+	static public void setLaser(Laser l) {
+		laser = l;
 	}
 	
 
